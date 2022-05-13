@@ -22,7 +22,12 @@ const rarities = {
 const handleMerchantFound = channels => (server, merchant) => {
   const { activeMerchants } = merchant;
   const { id, name, zone, card, rapport } = activeMerchants[0];
-  if (card.rarity !== 4 && rapport.rarity !== 4) return;
+  if (
+    card.rarity !== Number(process.env.CARD_RARITY_THRESHOLD) &&
+    rapport.rarity !== Number(process.env.RAPPORT_RARITY_THRESHOLD)
+  ) {
+    return;
+  }
 
   channels.map(async channel => {
     const sent = await channel.send(
