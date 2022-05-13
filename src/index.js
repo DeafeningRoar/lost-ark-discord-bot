@@ -4,6 +4,7 @@ const {
   subscribeMerchantFound,
   subscribeMerchantVote,
   subscribeHasActiveMerchants,
+  getActiveMerchants,
   initialize
 } = require('./merchants');
 const { findBy, insertMessage, deleteAll, checkConnection, getAllChannels } = require('./database');
@@ -30,11 +31,11 @@ const registerChannels = async client => {
   }
 };
 
-const handleMerchantFound = async (server, merchant) => {
+const handleMerchantFound = (channelsList = channels) => async (server, merchant) => {
   const { activeMerchants } = merchant;
   await Promise.all(
     activeMerchants.map(async activeMerchant => {
-      const { id, name, zone, card, rapport } = activeMerchant;
+      const { id, name, zone, card, rapport, votes } = activeMerchant;
 
       if (
         card.rarity < Number(process.env.CARD_RARITY_THRESHOLD) &&
@@ -44,7 +45,7 @@ const handleMerchantFound = async (server, merchant) => {
       }
 
       await Promise.all(
-        channels.map(async channel => {
+        channelsList.map(async channel => {
           const [message] = await findBy({ merchantId: id, channelId: channel.id });
           if (message) {
             return;
@@ -57,7 +58,7 @@ Nombre: ${name}
 Zona: ${zone}
 Carta: ${card.name}
 Rapport: ${rapport.name} (${rarities[rapport.rarity]})
-Votos: 0
+Votos: ${votes}
 \`\`\``
           );
 
@@ -68,8 +69,8 @@ Votos: 0
   );
 };
 
-const handleVotesChanged = (merchantId, votes) =>
-  channels.forEach(async channel => {
+const handleVotesChanged = (channelsList = channels) => (merchantId, votes) =>
+  channelsList.forEach(async channel => {
     const [message] = await findBy({ merchantId, channelId: channel.id });
     if (!message) {
       console.log(`No message found for merchantId ${merchantId} and channelId ${channel.id}`);
@@ -85,6 +86,14 @@ const handleHasActiveMerchants = async hasActiveMerchants => {
   await deleteAll();
 };
 
+const notifiyInitialMerchants = async () => {
+  // Initial merchants setup in case server restarts during notifications
+  const activeMerchants = await getActiveMerchants();
+  if (activeMerchants && activeMerchants.length) {
+    await Promise.all(activeMerchants.map(async activeMerchant => handleMerchantFound()(null, activeMerchant)));
+  }
+};
+
 const handleClientReady = client => async () => {
   console.log('Logged in to Discord...');
   if (!channels.length) {
@@ -92,8 +101,10 @@ const handleClientReady = client => async () => {
     console.log('Initialized channels', channels.length);
   }
 
-  subscribeMerchantFound(handleMerchantFound);
-  subscribeMerchantVote(handleVotesChanged);
+  await notifiyInitialMerchants();
+
+  subscribeMerchantFound(handleMerchantFound());
+  subscribeMerchantVote(handleVotesChanged());
   subscribeHasActiveMerchants(handleHasActiveMerchants);
 };
 
@@ -112,10 +123,15 @@ async function main() {
     }
 
     client.on('messageCreate', async message => {
-      const results = await Promise.all([setChannelId(message), removeChannelId(message)]);
-      if (results.some(Boolean)) {
+      if (message.author.bot) return;
+      const [successSet, successRemove] = await Promise.all([setChannelId(message), removeChannelId(message)]);
+      if (successSet || successRemove) {
         await registerChannels(client);
         console.log('Updated channels', channels.length);
+      }
+
+      if (successSet) {
+        await notifiyInitialMerchants();
       }
     });
   } catch (error) {

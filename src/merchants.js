@@ -50,9 +50,16 @@ function subscribeHasActiveMerchants(callback) {
   }, FIVE_MINUTES_MS * 2);
 }
 
+async function getActiveMerchants() {
+  if (connection === null) return;
+
+  return connection.invoke('GetKnownActiveMerchantGroups', serverName);
+}
+
 module.exports = {
   initialize,
   subscribeMerchantFound,
   subscribeMerchantVote,
-  subscribeHasActiveMerchants
+  subscribeHasActiveMerchants,
+  getActiveMerchants
 };
