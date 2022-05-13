@@ -22,6 +22,7 @@ const handleMerchantFound = channels => async (server, merchant) => {
   await Promise.all(
     activeMerchants.map(async activeMerchant => {
       const { id, name, zone, card, rapport } = activeMerchant;
+
       if (
         card.rarity < Number(process.env.CARD_RARITY_THRESHOLD) &&
         rapport.rarity < Number(process.env.RAPPORT_RARITY_THRESHOLD)
@@ -31,6 +32,11 @@ const handleMerchantFound = channels => async (server, merchant) => {
 
       await Promise.all(
         channels.map(async channel => {
+          const [message] = await findBy({ merchantId: id, channelId: channel.id });
+          if (message) {
+            return;
+          }
+
           const sent = await channel.send(
             `
 \`\`\`
