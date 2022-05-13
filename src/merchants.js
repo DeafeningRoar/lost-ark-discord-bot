@@ -10,7 +10,7 @@ async function initialize() {
   if (connection !== null) return;
 
   connection = new signalR.HubConnectionBuilder()
-    .withUrl('https://lostmerchants.com/MerchantHub', {
+    .withUrl(process.env.MERCHANTS_HUB_URL, {
       skipNegotiation: true,
       transport: signalR.HttpTransportType.WebSockets
     })

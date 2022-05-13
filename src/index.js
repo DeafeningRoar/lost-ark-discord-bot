@@ -6,8 +6,8 @@ const {
   subscribeHasActiveMerchants,
   initialize
 } = require('./merchants');
-const { findBy, insertMessage, deleteAll, checkConnection } = require('./database');
-const channelIds = JSON.parse(process.env.CHANNEL_IDS);
+const { findBy, insertMessage, deleteAll, checkConnection, getAllChannels } = require('./database');
+const { setChannelId, removeChannelId } = require('./commands');
 
 const rarities = {
   0: 'Common',
@@ -17,7 +17,20 @@ const rarities = {
   4: 'Legendary'
 };
 
-const handleMerchantFound = channels => async (server, merchant) => {
+let channels = [];
+
+const registerChannels = async client => {
+  const channelsList = await getAllChannels();
+  const foundChannels = channelsList.map(({ channelId }) => client.channels.cache.get(channelId));
+
+  if (!foundChannels || (foundChannels && !foundChannels.length)) {
+    channels = [];
+  } else {
+    channels = foundChannels;
+  }
+};
+
+const handleMerchantFound = async (server, merchant) => {
   const { activeMerchants } = merchant;
   await Promise.all(
     activeMerchants.map(async activeMerchant => {
@@ -55,7 +68,7 @@ Votos: 0
   );
 };
 
-const handleVotesChanged = channels => (merchantId, votes) => {
+const handleVotesChanged = (merchantId, votes) =>
   channels.forEach(async channel => {
     const [message] = await findBy({ merchantId, channelId: channel.id });
     if (!message) {
@@ -66,18 +79,21 @@ const handleVotesChanged = channels => (merchantId, votes) => {
     const discordMessage = await channel.messages.fetch(message.messageId);
     await discordMessage.edit(discordMessage.content.replace(regex, `Votos: ${votes}`));
   });
-};
 
 const handleHasActiveMerchants = async hasActiveMerchants => {
   if (hasActiveMerchants) return;
   await deleteAll();
 };
 
-const handleClientReady = client => () => {
+const handleClientReady = client => async () => {
   console.log('Logged in to Discord...');
-  const channels = channelIds.map(channelId => client.channels.cache.get(channelId));
-  subscribeMerchantFound(handleMerchantFound(channels));
-  subscribeMerchantVote(handleVotesChanged(channels));
+  if (!channels.length) {
+    await registerChannels(client);
+    console.log('Initialized channels', channels.length);
+  }
+
+  subscribeMerchantFound(handleMerchantFound);
+  subscribeMerchantVote(handleVotesChanged);
   subscribeHasActiveMerchants(handleHasActiveMerchants);
 };
 
@@ -94,6 +110,14 @@ async function main() {
     } else {
       client.on('ready', handleClientReady(client));
     }
+
+    client.on('messageCreate', async message => {
+      const results = await Promise.all([setChannelId(message), removeChannelId(message)]);
+      if (results.some(Boolean)) {
+        await registerChannels(client);
+        console.log('Updated channels', channels.length);
+      }
+    });
   } catch (error) {
     console.log(error);
     process.exit(0);
