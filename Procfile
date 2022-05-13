@@ -1,1 +1,1 @@
-worker: node index.js
+worker: npm run migrate && npm start

@@ -16,6 +16,7 @@
     "discord.js": "^13.6.0",
     "dotenv": "^16.0.1",
     "knex": "^2.0.0",
+    "pg": "^8.7.3",
     "uuid": "^8.3.2"
   },
   "devDependencies": {
