@@ -22,7 +22,7 @@ let channels = [];
 
 const registerChannels = async client => {
   const channelsList = await getAllChannels();
-  const foundChannels = channelsList.map(({ channelId }) => client.channels.cache.get(channelId));
+  const foundChannels = channelsList.map(({ channelId }) => client.channels.cache.get(channelId)).filter(Boolean);
 
   if (!foundChannels || (foundChannels && !foundChannels.length)) {
     channels = [];
