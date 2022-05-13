@@ -1,0 +1,23 @@
+{
+  "id": 289922,
+  "server": "Yorn",
+  "merchantName": "Jeffrey",
+  "activeMerchants": [
+    {
+      "id": "3c8ad218-2a37-48d8-2991-08da339dd177",
+      "name": "Jeffrey",
+      "zone": "Icewing Heights",
+      "card": { "name": "Sian", "rarity": 2 },
+      "rapport": { "name": "Shimmering Essence", "rarity": 3 },
+      "votes": 3
+    },
+    {
+      "id": "c727a7ca-ee2c-473f-2a27-08da339dd177",
+      "name": "Jeffrey",
+      "zone": "Iceblood Plateau",
+      "card": { "name": "Sian", "rarity": 2 },
+      "rapport": { "name": "Shimmering Essence", "rarity": 3 },
+      "votes": 0
+    }
+  ]
+}

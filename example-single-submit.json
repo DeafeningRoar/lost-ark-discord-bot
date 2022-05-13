@@ -1,0 +1,15 @@
+{
+  "id": 288672,
+  "server": "Yorn",
+  "merchantName": "Rayni",
+  "activeMerchants": [
+    {
+      "id": "c099a822-df2d-4276-1fa3-08da339dd177",
+      "name": "Rayni",
+      "zone": "Secret Forest",
+      "card": { "name": "Stella", "rarity": 2 },
+      "rapport": { "name": "Pinata Crafting Set", "rarity": 3 },
+      "votes": 0
+    }
+  ]
+}

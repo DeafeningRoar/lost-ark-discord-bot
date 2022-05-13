@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "start": "node .",
-    "dev": "nodemon ."
+    "dev": "nodemon .",
+    "migrate:make": "knex migrate:make",
+    "migrate": "knex migrate:latest --knexfile ./knexfile.js"
   },
   "author": "Felipe Saa Echavarría",
   "license": "ISC",
@@ -13,9 +15,11 @@
     "@microsoft/signalr": "^6.0.5",
     "discord.js": "^13.6.0",
     "dotenv": "^16.0.1",
+    "knex": "^2.0.0",
     "uuid": "^8.3.2"
   },
   "devDependencies": {
-    "nodemon": "^2.0.16"
+    "nodemon": "^2.0.16",
+    "sqlite3": "^5.0.8"
   }
 }
