@@ -35,7 +35,7 @@ async function initialize() {
   });
 
   setInterval(() => {
-    if (connection.state() === null) {
+    if (connection.state !== 'Connected') {
       return;
     }
 
@@ -44,19 +44,19 @@ async function initialize() {
 }
 
 function subscribeMerchantFound(callback) {
-  if (connection === null) return;
+  if (connection.state !== 'Connected') return;
 
   connection.on('UpdateMerchantGroup', callback);
 }
 
 function subscribeMerchantVote(callback) {
-  if (connection === null) return;
+  if (connection.state !== 'Connected') return;
 
   connection.on('UpdateVoteTotal', callback);
 }
 
 function subscribeHasActiveMerchants(callback) {
-  if (connection === null) return;
+  if (connection.state !== 'Connected') return;
 
   setInterval(async () => {
     const hasMerchants = await connection.invoke('GetKnownActiveMerchantGroups', serverName);
@@ -65,7 +65,7 @@ function subscribeHasActiveMerchants(callback) {
 }
 
 async function getActiveMerchants() {
-  if (connection === null) return;
+  if (connection.state !== 'Connected') return;
 
   return connection.invoke('GetKnownActiveMerchantGroups', serverName);
 }
