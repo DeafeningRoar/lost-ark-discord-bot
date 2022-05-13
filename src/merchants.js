@@ -15,7 +15,7 @@ async function initialize() {
       transport: signalR.HttpTransportType.WebSockets
     })
     .withAutomaticReconnect([FIVE_MINUTES_MS, FIVE_MINUTES_MS, FIVE_MINUTES_MS, FIVE_MINUTES_MS, FIVE_MINUTES_MS])
-    .configureLogging(process.env.SIGNALR_LOG_LEVEL)
+    .configureLogging(Number(process.env.SIGNALR_LOG_LEVEL || 1))
     .build();
   connection.serverTimeoutInMilliseconds = 120000;
   connection.keepAliveIntervalInMilliseconds = 60000;
