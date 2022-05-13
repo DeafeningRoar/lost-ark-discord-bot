@@ -17,8 +17,8 @@ async function initialize() {
     .withAutomaticReconnect([FIVE_MINUTES_MS, FIVE_MINUTES_MS, FIVE_MINUTES_MS, FIVE_MINUTES_MS, FIVE_MINUTES_MS])
     .configureLogging(Number(process.env.SIGNALR_LOG_LEVEL || 1))
     .build();
-  connection.serverTimeoutInMilliseconds = 120000;
-  connection.keepAliveIntervalInMilliseconds = 60000;
+  connection.serverTimeoutInMilliseconds = FIVE_MINUTES_MS * 2;
+  connection.keepAliveIntervalInMilliseconds = FIVE_MINUTES * 1.2;
 
   await connection.start();
   console.log('Started LostMerchants connection...');
@@ -26,7 +26,7 @@ async function initialize() {
   await connection.invoke('SubscribeToServer', serverName);
   console.log('Subscribed to server', serverName);
 
-  setInterval(() => connection.invoke('HasNewerClient', 1), 50000);
+  setInterval(() => connection.invoke('HasNewerClient', 1), FIVE_MINUTES_MS);
 }
 
 function subscribeMerchantFound(callback) {
