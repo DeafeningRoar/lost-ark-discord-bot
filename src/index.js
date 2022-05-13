@@ -58,7 +58,7 @@ const handleMerchantFound = (channelsList = channels) => async (server, merchant
 Nombre: ${name}
 Región: ${merchants[name]?.Region || '??'}
 Zona: ${zone}
-Carta: ${card.name}
+Carta: ${card.name} (${rarities[card.rarity]})
 Rapport: ${rapport.name} (${rarities[rapport.rarity]})
 Votos: ${votes}
 \`\`\``
