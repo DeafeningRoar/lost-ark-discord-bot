@@ -1,4 +1,4 @@
-const { insertChannel, removeChannel } = require('./database');
+const { insertChannel, removeChannel, getChannel } = require('./database');
 
 const COMMANDS_LIST = {
   SET_CHANNEL: '/setchannel',
@@ -8,6 +8,12 @@ const COMMANDS_LIST = {
 async function setChannelId(message) {
   try {
     if (message.content !== COMMANDS_LIST.SET_CHANNEL || message.author.bot) {
+      return false;
+    }
+    const [channel] = await getChannel({ channelId: message.channelId, guildId: message.guildId });
+
+    if (channel) {
+      console.log(`Channel ${message.channelId} in guild ${message.guildId} already registered`);
       return false;
     }
 

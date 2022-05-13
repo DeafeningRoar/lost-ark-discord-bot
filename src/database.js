@@ -49,6 +49,10 @@ function getAllChannels() {
   return db('channels').select();
 }
 
+function getChannel(params) {
+  return db('channels').where(params);
+}
+
 module.exports = {
   findBy,
   insertMessage,
@@ -56,5 +60,6 @@ module.exports = {
   checkConnection,
   insertChannel,
   removeChannel,
-  getAllChannels
+  getAllChannels,
+  getChannel
 };
