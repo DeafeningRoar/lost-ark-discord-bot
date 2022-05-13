@@ -38,7 +38,7 @@ const handleMerchantFound = channels => async (server, merchant) => {
           }
 
           const sent = await channel.send(
-            `
+            `${card.name.toLowerCase() === 'wei' ? '@everyone' : ''}
 \`\`\`
 Nombre: ${name}
 Zona: ${zone}
