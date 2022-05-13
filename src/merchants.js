@@ -30,9 +30,13 @@ async function initialize() {
   await connection.invoke('SubscribeToServer', serverName);
   console.log('Subscribed to server', serverName);
 
+  connection.onclose(error => {
+    console.log('Hub connection closed', error);
+  });
+
   setInterval(() => {
     if (connection.state() === null) {
-      connectionSetup();
+      return;
     }
 
     connection.invoke('HasNewerClient', 1);
