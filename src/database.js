@@ -53,6 +53,14 @@ function getChannel(params) {
   return db('channels').where(params);
 }
 
+function removeChannels(params) {
+  console.log('Executing Delete Channels', params);
+  if (params) {
+    return db('channels').where(params).del();
+  }
+  return db('channels').del();
+}
+
 module.exports = {
   findBy,
   insertMessage,
@@ -61,5 +69,6 @@ module.exports = {
   insertChannel,
   removeChannel,
   getAllChannels,
-  getChannel
+  getChannel,
+  removeChannels
 };

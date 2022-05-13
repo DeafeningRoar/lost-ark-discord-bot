@@ -1,8 +1,10 @@
-const { insertChannel, removeChannel, getChannel } = require('./database');
+const { insertChannel, removeChannel, getChannel, removeChannels } = require('./database');
 
 const COMMANDS_LIST = {
   SET_CHANNEL: '/setchannel',
-  REMOVE_CHANNEL: '/removechannel'
+  REMOVE_CHANNEL: '/removechannel',
+  CLEAR_GUILD: '/clearguild',
+  CLEAR_ALL: '/clearall'
 };
 
 async function setChannelId(message) {
@@ -41,7 +43,32 @@ async function removeChannelId(message) {
   }
 }
 
+async function clearChannels(message) {
+  try {
+    if (
+      (message.content !== COMMANDS_LIST.CLEAR_GUILD && message.content !== COMMANDS_LIST.CLEAR_ALL) ||
+      message.author.bot ||
+      message.author.id !== process.env.ADMIN_ID
+    ) {
+      return false;
+    }
+
+    let params;
+    if (message.content === COMMANDS_LIST.CLEAR_GUILD) {
+      params = { guildId: message.guildId };
+    }
+
+    await removeChannels(params);
+    await message.reply('Removed channels');
+    return true;
+  } catch (error) {
+    console.log('Clear channels error', error);
+    return false;
+  }
+}
+
 module.exports = {
   setChannelId,
-  removeChannelId
+  removeChannelId,
+  clearChannels
 };

@@ -8,7 +8,7 @@ const {
   initialize
 } = require('./merchants');
 const { findBy, insertMessage, deleteAll, checkConnection, getAllChannels } = require('./database');
-const { setChannelId, removeChannelId } = require('./commands');
+const { setChannelId, removeChannelId, clearChannels } = require('./commands');
 
 const rarities = {
   0: 'Common',
@@ -129,7 +129,11 @@ async function main() {
 
     client.on('messageCreate', async message => {
       if (message.author.bot) return;
-      const [successSet, successRemove] = await Promise.all([setChannelId(message), removeChannelId(message)]);
+      const [successSet, successRemove] = await Promise.all([
+        setChannelId(message),
+        removeChannelId(message),
+        clearChannels(message)
+      ]);
       if (successSet || successRemove) {
         await registerChannels(client);
         console.log('Updated channels', channels.length);
