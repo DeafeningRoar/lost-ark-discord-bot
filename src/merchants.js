@@ -15,7 +15,7 @@ async function initialize() {
       transport: signalR.HttpTransportType.WebSockets
     })
     .withAutomaticReconnect([FIVE_MINUTES_MS, FIVE_MINUTES_MS, FIVE_MINUTES_MS, FIVE_MINUTES_MS, FIVE_MINUTES_MS])
-    .configureLogging(1)
+    .configureLogging(process.env.SIGNALR_LOG_LEVEL)
     .build();
   connection.serverTimeoutInMilliseconds = 120000;
   connection.keepAliveIntervalInMilliseconds = 60000;
@@ -26,7 +26,7 @@ async function initialize() {
   await connection.invoke('SubscribeToServer', serverName);
   console.log('Subscribed to server', serverName);
 
-  setInterval(() => connection.invoke('HasNewerClient', 1), 60000);
+  setInterval(() => connection.invoke('HasNewerClient', 1), 50000);
 }
 
 function subscribeMerchantFound(callback) {
