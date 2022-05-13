@@ -24,8 +24,16 @@ function deleteAll() {
   return db('messages').del();
 }
 
+async function checkConnection() {
+  console.log('Checking DB connection...');
+  const result = await db.raw('select 1 + 1 as result');
+  console.log('Connection OK', result);
+  return result;
+}
+
 module.exports = {
   findBy,
   insertMessage,
-  deleteAll
+  deleteAll,
+  checkConnection
 };

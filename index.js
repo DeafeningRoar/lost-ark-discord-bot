@@ -6,7 +6,7 @@ const {
   subscribeHasActiveMerchants,
   initialize
 } = require('./merchants');
-const { findBy, insertMessage, deleteAll } = require('./database');
+const { findBy, insertMessage, deleteAll, checkConnection } = require('./database');
 const channelIds = JSON.parse(process.env.CHANNEL_IDS);
 
 const rarities = {
@@ -77,6 +77,7 @@ const handleClientReady = client => () => {
 
 async function main() {
   try {
+    await checkConnection();
     const client = new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES] });
 
     await initialize();
