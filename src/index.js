@@ -9,6 +9,7 @@ const {
 } = require('./merchants');
 const { findBy, insertMessage, deleteAll, checkConnection, getAllChannels } = require('./database');
 const { setChannelId, removeChannelId, clearChannels } = require('./commands');
+const merchants = require('../merchants.json');
 
 const rarities = {
   0: 'Common',
@@ -55,6 +56,7 @@ const handleMerchantFound = (channelsList = channels) => async (server, merchant
             `${card.name.toLowerCase() === 'wei' ? '@everyone' : ''}
 \`\`\`
 Nombre: ${name}
+Región: ${merchants[name]?.Region || '??'}
 Zona: ${zone}
 Carta: ${card.name}
 Rapport: ${rapport.name} (${rarities[rapport.rarity]})
