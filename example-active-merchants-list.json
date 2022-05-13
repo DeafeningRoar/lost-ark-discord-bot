@@ -1,0 +1,78 @@
+[
+  {
+    "id": 0,
+    "server": "Yorn",
+    "merchantName": "Ben",
+    "activeMerchants": [
+      {
+        "id": "a7818d52-cd13-4a0b-a77d-08da34ed18a8",
+        "name": "Ben",
+        "zone": "Rethramis Border",
+        "card": { "name": "Varut", "rarity": 2 },
+        "rapport": { "name": "Prideholme Potato", "rarity": 3 },
+        "votes": -6
+      },
+      {
+        "id": "b2e9337a-8d90-43d7-a83b-08da34ed18a8",
+        "name": "Ben",
+        "zone": "Ankumo Mountain",
+        "card": { "name": "Varut", "rarity": 2 },
+        "rapport": { "name": "Prideholme Potato", "rarity": 3 },
+        "votes": 5
+      }
+    ]
+  },
+  {
+    "id": 0,
+    "server": "Yorn",
+    "merchantName": "Evan",
+    "activeMerchants": [
+      {
+        "id": "90cc3c5d-2737-46e6-a7d5-08da34ed18a8",
+        "name": "Evan",
+        "zone": "Candaria Territory",
+        "card": { "name": "Vern Zenlord", "rarity": 2 },
+        "rapport": { "name": "Febre Potion", "rarity": 3 },
+        "votes": 4
+      }
+    ]
+  },
+  {
+    "id": 0,
+    "server": "Yorn",
+    "merchantName": "Peter",
+    "activeMerchants": [
+      {
+        "id": "912e44d5-8647-4305-a815-08da34ed18a8",
+        "name": "Peter",
+        "zone": "Parna Forest",
+        "card": { "name": "Gideon", "rarity": 2 },
+        "rapport": { "name": "Crystallized Magick", "rarity": 3 },
+        "votes": 6
+      }
+    ]
+  },
+  {
+    "id": 0,
+    "server": "Yorn",
+    "merchantName": "Laitir",
+    "activeMerchants": [
+      {
+        "id": "234c99a4-4bc6-4741-a841-08da34ed18a8",
+        "name": "Laitir",
+        "zone": "Iron Hammer Mine",
+        "card": { "name": "Great Castle Neria", "rarity": 2 },
+        "rapport": { "name": "Piyer's Secret Textbook", "rarity": 3 },
+        "votes": -5
+      },
+      {
+        "id": "89dbe381-fd0e-468c-a84d-08da34ed18a8",
+        "name": "Laitir",
+        "zone": "Black Anvil Mine",
+        "card": { "name": "Great Castle Neria", "rarity": 2 },
+        "rapport": { "name": "Piyer's Secret Textbook", "rarity": 3 },
+        "votes": 3
+      }
+    ]
+  }
+]
