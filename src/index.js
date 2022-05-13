@@ -86,11 +86,16 @@ const handleHasActiveMerchants = async hasActiveMerchants => {
   await deleteAll();
 };
 
-const notifiyInitialMerchants = async () => {
+const notifiyInitialMerchants = async (channelsList = channels) => {
+  console.log('Notifiying initial merchants to channels', channelsList.map(c => c.id).filter(Boolean));
+  if (!channelsList.length) return;
   // Initial merchants setup in case server restarts during notifications
   const activeMerchants = await getActiveMerchants();
+  console.log('Initial merchants count', activeMerchants.length);
   if (activeMerchants && activeMerchants.length) {
-    await Promise.all(activeMerchants.map(async activeMerchant => handleMerchantFound()(null, activeMerchant)));
+    await Promise.all(
+      activeMerchants.map(async activeMerchant => handleMerchantFound(channelsList)(null, activeMerchant))
+    );
   }
 };
 
@@ -131,7 +136,8 @@ async function main() {
       }
 
       if (successSet) {
-        await notifiyInitialMerchants();
+        const channel = channels.find(c => c.id === message.channelId && c.guildId === message.guildId);
+        await notifiyInitialMerchants([channel]);
       }
     });
   } catch (error) {
