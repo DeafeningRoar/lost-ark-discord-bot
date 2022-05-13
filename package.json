@@ -1,0 +1,21 @@
+{
+  "name": "wanderlost-discord",
+  "version": "1.0.0",
+  "description": "Push notifications to discord channel",
+  "main": "index.js",
+  "scripts": {
+    "start": "node .",
+    "dev": "nodemon ."
+  },
+  "author": "Felipe Saa Echavarría",
+  "license": "ISC",
+  "dependencies": {
+    "@microsoft/signalr": "^6.0.5",
+    "discord.js": "^13.6.0",
+    "dotenv": "^16.0.1",
+    "uuid": "^8.3.2"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.16"
+  }
+}
