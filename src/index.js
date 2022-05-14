@@ -4,6 +4,7 @@ const {
   subscribeMerchantFound,
   subscribeMerchantVote,
   subscribeHasActiveMerchants,
+  subscribeOnReconnect,
   getActiveMerchants,
   initialize
 } = require('./merchants');
@@ -113,6 +114,7 @@ const handleClientReady = client => async () => {
   subscribeMerchantFound(handleMerchantFound());
   subscribeMerchantVote(handleVotesChanged());
   subscribeHasActiveMerchants(handleHasActiveMerchants);
+  subscribeOnReconnect(notifiyInitialMerchants);
 };
 
 async function main() {

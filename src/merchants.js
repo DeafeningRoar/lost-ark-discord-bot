@@ -31,17 +31,13 @@ async function initialize() {
     await connection.invoke('SubscribeToServer', serverName);
     console.log('Subscribed to server', serverName);
 
-    connection.onclose(error => {
-      console.log('Hub connection closed', error);
-    });
-
-    setInterval(() => {
+    setInterval(async () => {
       try {
         if (connection.state !== 'Connected') {
           return;
         }
 
-        connection.invoke('HasNewerClient', 1);
+        await connection.invoke('HasNewerClient', 1);
       } catch (error) {
         console.log('Error calling HasNewerClient', error);
       }
@@ -90,10 +86,22 @@ async function getActiveMerchants() {
   }
 }
 
+async function subscribeOnReconnect(callback) {
+  try {
+    connection.onreconnected(async () => {
+      console.log('Successfully reconnected to Merchants');
+      await callback();
+    });
+  } catch (error) {
+    console.log('Error onReconnected handler', error);
+  }
+}
+
 module.exports = {
   initialize,
   subscribeMerchantFound,
   subscribeMerchantVote,
   subscribeHasActiveMerchants,
-  getActiveMerchants
+  getActiveMerchants,
+  subscribeOnReconnect
 };
