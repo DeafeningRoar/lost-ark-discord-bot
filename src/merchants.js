@@ -44,28 +44,27 @@ async function initialize() {
     }, FIVE_MINUTES_MS);
   } catch (error) {
     console.log('Merchants Initialize error', error);
-    return Promise.reject(error);
   }
 }
 
 function subscribeMerchantFound(callback) {
-  if (connection.state !== 'Connected') return;
+  if (connection === null || connection.state !== 'Connected') return;
 
   connection.on('UpdateMerchantGroup', callback);
 }
 
 function subscribeMerchantVote(callback) {
-  if (connection.state !== 'Connected') return;
+  if (connection === null || connection.state !== 'Connected') return;
 
   connection.on('UpdateVoteTotal', callback);
 }
 
 function subscribeHasActiveMerchants(callback) {
-  if (connection.state !== 'Connected') return;
+  if (connection === null || connection.state !== 'Connected') return;
 
   setInterval(async () => {
     try {
-      if (connection.state !== 'Connected') return;
+      if (connection === null || connection.state !== 'Connected') return;
       const hasMerchants = await connection.invoke('GetKnownActiveMerchantGroups', serverName);
       callback(hasMerchants);
     } catch (error) {
@@ -77,7 +76,7 @@ function subscribeHasActiveMerchants(callback) {
 
 async function getActiveMerchants() {
   try {
-    if (connection.state !== 'Connected') return;
+    if (connection === null || connection.state !== 'Connected') return;
 
     return connection.invoke('GetKnownActiveMerchantGroups', serverName);
   } catch (error) {
@@ -87,6 +86,7 @@ async function getActiveMerchants() {
 }
 
 async function subscribeOnReconnect(callback) {
+  if (connection === null) return;
   try {
     connection.onreconnected(async () => {
       console.log('Successfully reconnected to Merchants');

@@ -98,6 +98,25 @@ const handleVotesChanged = (channelsList = channels) => (merchantId, votes) =>
 
 const handleHasActiveMerchants = async hasActiveMerchants => {
   if (hasActiveMerchants) return;
+  try {
+    const regex = /Expiración: <t:([0-9]+):R>/;
+    const regExp = new RegExp(regex, 'g');
+    await Promise.all(
+      channels.map(async channel => {
+        const messages = await findBy({ channelId: channel.id });
+        await Promise.all(
+          messages.map(async ({ messageId }) => {
+            const message = await channel.messages.fetch(messageId);
+            const timestamp = message.content.match(regex)?.[1];
+            if (!timestamp) return;
+            await message.edit(message.content.replace(regExp, `Expiración: <t:${timestamp}:f>`));
+          })
+        );
+      })
+    );
+  } catch (error) {
+    console.log('Error formatting timestamps', error);
+  }
   await deleteAll();
 };
 
@@ -106,7 +125,7 @@ const notifiyInitialMerchants = async (channelsList = channels) => {
   if (!channelsList.length) return;
   // Initial merchants setup in case server restarts during notifications
   const activeMerchants = await getActiveMerchants();
-  console.log('Initial merchants count', activeMerchants.length);
+  console.log('Initial merchants count', activeMerchants?.length || null);
   if (activeMerchants && activeMerchants.length) {
     await Promise.all(
       activeMerchants.map(async activeMerchant => handleMerchantFound(channelsList)(null, activeMerchant))
