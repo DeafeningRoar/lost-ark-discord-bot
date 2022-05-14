@@ -8,9 +8,11 @@ const {
   getActiveMerchants,
   initialize
 } = require('./merchants');
-const { findBy, insertMessage, deleteAll, checkConnection, getAllChannels } = require('./database');
+const { findBy, insertMessage, deleteAll, checkConnection, getAllChannels, getChannel } = require('./database');
 const { setChannelId, removeChannelId, clearChannels, setAlertChannel, removeAlertChannel } = require('./commands');
 const merchants = require('../merchants.json');
+const emitter = require('./eventEmitter');
+const { formatError } = require('./utils');
 
 const rarities = {
   0: 'Common',
@@ -116,6 +118,7 @@ const handleHasActiveMerchants = async hasActiveMerchants => {
     );
   } catch (error) {
     console.log('Error formatting timestamps', error);
+    emitter.emit('HandlerError', formatError('handleHasActiveMerchants', error));
   }
   await deleteAll();
 };
@@ -139,13 +142,26 @@ const handleClientReady = client => async () => {
     await registerChannels(client);
     console.log('Initialized channels', channels.length);
   }
+  await initialize();
+};
 
-  await notifiyInitialMerchants();
-
-  subscribeMerchantFound(handleMerchantFound());
-  subscribeMerchantVote(handleVotesChanged());
-  subscribeHasActiveMerchants(handleHasActiveMerchants);
-  subscribeOnReconnect(notifiyInitialMerchants);
+const notifyAlertChannels = client => async message => {
+  const dbChannels = await getChannel({ isAlert: true });
+  if (!dbChannels?.length) {
+    console.log('No alert channels to notify');
+    return;
+  }
+  const alertChannels = dbChannels.map(({ channelId }) => client.channels.cache.get(channelId));
+  await Promise.all(
+    alertChannels.map(async channel =>
+      channel.send(
+        `Error:
+\`\`\`
+${JSON.stringify(message, null, 2)}
+\`\`\``
+      )
+    )
+  );
 };
 
 async function main() {
@@ -153,7 +169,6 @@ async function main() {
     await checkConnection();
     const client = new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES] });
 
-    await initialize();
     await client.login(process.env.DISCORD_TOKEN);
 
     if (client.isReady()) {
@@ -181,10 +196,28 @@ async function main() {
         await notifiyInitialMerchants([channel]);
       }
     });
+
+    emitter.on('MerchantsError', notifyAlertChannels(client));
+    emitter.on('HandlerError', notifyAlertChannels(client));
   } catch (error) {
     console.log(error);
-    process.exit(0);
+    emitter.emit('ProcessError');
   }
 }
+
+emitter.on('MerchantsReady', async () => {
+  console.log('MerchantsHub Initialized');
+  console.log('Subscribing to events');
+  await notifiyInitialMerchants();
+
+  subscribeMerchantFound(handleMerchantFound());
+  subscribeMerchantVote(handleVotesChanged());
+  subscribeHasActiveMerchants(handleHasActiveMerchants);
+  subscribeOnReconnect(notifiyInitialMerchants);
+});
+
+emitter.on('ProcessError', async () => {
+  await main();
+});
 
 main();
