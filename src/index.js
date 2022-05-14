@@ -99,7 +99,7 @@ const handleVotesChanged = (channelsList = channels) => (merchantId, votes) =>
   });
 
 const handleHasActiveMerchants = async hasActiveMerchants => {
-  if (hasActiveMerchants) return;
+  if (hasActiveMerchants?.length) return;
   try {
     const regex = /Expiración: <t:([0-9]+):R>/;
     const regExp = new RegExp(regex, 'g');
