@@ -53,8 +53,8 @@ const handleMerchantFound = (channelsList = channels) => async (server, merchant
             return;
           }
 
-          const sent = await channel.send(
-            `${card.name.toLowerCase() === 'wei' ? '@everyone' : ''}
+          const sent = await channel.send({
+            content: `${card.name.toLowerCase() === 'wei' ? '@everyone' : ''}
 \`\`\`
 Nombre: ${name}
 Región: ${merchants[name]?.Region || '??'}
@@ -62,8 +62,14 @@ Zona: ${zone}
 Carta: ${card.name} (${rarities[card.rarity]})
 Rapport: ${rapport.name} (${rarities[rapport.rarity]})
 Votos: ${votes}
-\`\`\``
-          );
+\`\`\``,
+            files: [
+              {
+                attachment: __dirname + '/../assets/zones/' + zone + '.jpg',
+                name: zone + '.jpg'
+              }
+            ]
+          });
 
           await insertMessage(sent.id, id, channel.id);
         })
