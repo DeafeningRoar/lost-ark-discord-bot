@@ -20,27 +20,36 @@ const connectionSetup = () => {
 };
 
 async function initialize() {
-  if (connection !== null) return;
+  try {
+    if (connection !== null) return;
 
-  connectionSetup();
+    connectionSetup();
 
-  await connection.start();
-  console.log('Started LostMerchants connection...');
+    await connection.start();
+    console.log('Started LostMerchants connection...');
 
-  await connection.invoke('SubscribeToServer', serverName);
-  console.log('Subscribed to server', serverName);
+    await connection.invoke('SubscribeToServer', serverName);
+    console.log('Subscribed to server', serverName);
 
-  connection.onclose(error => {
-    console.log('Hub connection closed', error);
-  });
+    connection.onclose(error => {
+      console.log('Hub connection closed', error);
+    });
 
-  setInterval(() => {
-    if (connection.state !== 'Connected') {
-      return;
-    }
+    setInterval(() => {
+      try {
+        if (connection.state !== 'Connected') {
+          return;
+        }
 
-    connection.invoke('HasNewerClient', 1);
-  }, FIVE_MINUTES_MS);
+        connection.invoke('HasNewerClient', 1);
+      } catch (error) {
+        console.log('Error calling HasNewerClient', error);
+      }
+    }, FIVE_MINUTES_MS);
+  } catch (error) {
+    console.log('Merchants Initialize error', error);
+    return Promise.reject(error);
+  }
 }
 
 function subscribeMerchantFound(callback) {
@@ -59,15 +68,26 @@ function subscribeHasActiveMerchants(callback) {
   if (connection.state !== 'Connected') return;
 
   setInterval(async () => {
-    const hasMerchants = await connection.invoke('GetKnownActiveMerchantGroups', serverName);
-    callback(hasMerchants);
+    try {
+      if (connection.state !== 'Connected') return;
+      const hasMerchants = await connection.invoke('GetKnownActiveMerchantGroups', serverName);
+      callback(hasMerchants);
+    } catch (error) {
+      console.log('Error calling GetKnownActiveMerchantGroups (Interval)', error);
+      return true;
+    }
   }, FIVE_MINUTES_MS * 2);
 }
 
 async function getActiveMerchants() {
-  if (connection.state !== 'Connected') return;
+  try {
+    if (connection.state !== 'Connected') return;
 
-  return connection.invoke('GetKnownActiveMerchantGroups', serverName);
+    return connection.invoke('GetKnownActiveMerchantGroups', serverName);
+  } catch (error) {
+    console.log('Error calling GetKnownActiveMerchantGroups', error);
+    return [];
+  }
 }
 
 module.exports = {
