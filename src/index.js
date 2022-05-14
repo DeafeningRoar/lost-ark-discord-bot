@@ -9,7 +9,7 @@ const {
   initialize
 } = require('./merchants');
 const { findBy, insertMessage, deleteAll, checkConnection, getAllChannels } = require('./database');
-const { setChannelId, removeChannelId, clearChannels } = require('./commands');
+const { setChannelId, removeChannelId, clearChannels, setAlertChannel, removeAlertChannel } = require('./commands');
 const merchants = require('../merchants.json');
 
 const rarities = {
@@ -31,6 +31,12 @@ const registerChannels = async client => {
   } else {
     channels = foundChannels;
   }
+};
+
+const getRemainingTime = () => {
+  const currentDate = new Date();
+  currentDate.setUTCMinutes(55, 0, 0);
+  return Math.floor(currentDate.getTime() / 1000);
 };
 
 const handleMerchantFound = (channelsList = channels) => async (server, merchant) => {
@@ -55,7 +61,7 @@ const handleMerchantFound = (channelsList = channels) => async (server, merchant
 
           const sent = await channel.send({
             content: `${card.name.toLowerCase() === 'wei' ? '@everyone' : ''}
-\`\`\`
+Expiración: <t:${getRemainingTime()}:R>\`\`\`
 Nombre: ${name}
 Región: ${merchants[name]?.Region || '??'}
 Zona: ${zone}
@@ -142,7 +148,9 @@ async function main() {
       const [successSet, successRemove] = await Promise.all([
         setChannelId(message),
         removeChannelId(message),
-        clearChannels(message)
+        clearChannels(message),
+        setAlertChannel(message),
+        removeAlertChannel(message)
       ]);
       if (successSet || successRemove) {
         await registerChannels(client);

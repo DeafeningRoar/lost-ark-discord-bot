@@ -7,7 +7,8 @@
     "start": "node src/index.js",
     "dev": "nodemon src/index.js",
     "migrate:make": "knex migrate:make --knexfile knexFile.js",
-    "migrate": "knex migrate:latest --knexfile knexFile.js"
+    "migrate": "knex migrate:latest --knexfile knexFile.js",
+    "migrate:down": "knex migrate:down --knexfile knexFile.js"
   },
   "author": "Felipe Saa Echavarría",
   "license": "ISC",

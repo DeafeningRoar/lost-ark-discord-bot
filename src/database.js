@@ -31,22 +31,23 @@ async function checkConnection() {
   return result;
 }
 
-async function insertChannel(channelId, guildId) {
-  console.log('Exetuing Insert', { channelId, guildId });
+async function insertChannel(channelId, guildId, isAlert = false) {
+  console.log('Exetuing Insert', { channelId, guildId, isAlert });
   return db('channels').insert({
     id: uuid(),
     channelId,
-    guildId
+    guildId,
+    isAlert
   });
 }
 
-function removeChannel(channelId, guildId) {
-  console.log('Executing Delete', { channelId, guildId });
-  return db('channels').where({ channelId, guildId }).del();
+function removeChannel(channelId, guildId, isAlert) {
+  console.log('Executing Delete', { channelId, guildId, isAlert });
+  return db('channels').where({ channelId, guildId, isAlert }).del();
 }
 
 function getAllChannels() {
-  return db('channels').select();
+  return db('channels').where({ isAlert: false }).select();
 }
 
 function getChannel(params) {
@@ -54,10 +55,11 @@ function getChannel(params) {
 }
 
 function removeChannels(params) {
-  console.log('Executing Delete Channels', params);
   if (params) {
+    console.log('Executing Delete Channels', params);
     return db('channels').where(params).del();
   }
+  console.log('Executing Delete All Channels');
   return db('channels').del();
 }
 
