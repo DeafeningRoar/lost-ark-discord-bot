@@ -88,7 +88,7 @@ async function notifyAlert({ message, client }) {
     await Promise.all(
       alertChannels.map(async channel =>
         channel.send(
-          `Error:
+          `
 \`\`\`
 ${JSON.stringify(message, null, 2)}
 \`\`\``

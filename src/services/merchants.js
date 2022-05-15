@@ -42,6 +42,16 @@ class MerchantsHub {
     }
   }
 
+  cleanUp() {
+    try {
+      this.connection.off(MERCHANTS_HUB_ACTIONS.UPDATE_MERCHANT_GROUP);
+      this.connection.off(MERCHANTS_HUB_ACTIONS.UPDATE_VOTE_TOTAL);
+    } catch (error) {
+      console.log('Error cleaning up event listeners', error);
+      emitter.emit(EVENTS.NOTIFY_ALERT, formatError('cleanUp', error));
+    }
+  }
+
   initializeSubscriptions() {
     this.connection.on(MERCHANTS_HUB_ACTIONS.UPDATE_MERCHANT_GROUP, (server, merchant) => {
       console.log('Received found merchant event', { server, merchant });
@@ -52,21 +62,6 @@ class MerchantsHub {
       console.log('Received merchant votes updated event', { merchantId, votes });
       emitter.emit(EVENTS.MERCHANT_VOTES_CHANED, { server: this.server, merchantId, votes });
     });
-
-    this.connection.onreconnecting(error => {
-      emitter.emit(EVENTS.MERCHANTS_HUB_RECONNECTING, formatError('Reconnecting', error));
-    });
-
-    this.connection.onreconnected(() => {
-      console.log('Reconnected to MerchantsHub');
-      emitter.emit(EVENTS.MERCHANTS_HUB_RECONNECTED);
-    });
-
-    this.interval = setInterval(async () => {
-      console.log('Fetching active merchants list');
-      const merchantsList = await this.getActiveMerchantsList();
-      emitter.emit(EVENTS.MERCHANTS_LIST_CHECK, merchantsList);
-    }, FIVE_MINUTES_MS);
   }
 
   async initialize() {
@@ -84,14 +79,38 @@ class MerchantsHub {
       console.log('Subscribed to MerchantsHub server', this.server);
 
       this.initializeSubscriptions();
+
+      this.interval = setInterval(async () => {
+        console.log('Fetching active merchants list');
+        const merchantsList = await this.getActiveMerchantsList();
+        emitter.emit(EVENTS.MERCHANTS_LIST_CHECK, merchantsList);
+      }, FIVE_MINUTES_MS);
+
       console.log('Initialized MerchantsHub subscriptions');
+
+      this.connection.onreconnecting(error => {
+        emitter.emit(EVENTS.MERCHANTS_HUB_RECONNECTING, formatError('Reconnecting', error));
+      });
+
+      this.connection.onreconnected(() => {
+        try {
+          console.log('Reconnected to MerchantsHub');
+          this.cleanUp();
+          this.initializeSubscriptions();
+          emitter.emit(EVENTS.MERCHANTS_HUB_RECONNECTED);
+        } catch (error) {
+          console.log('Error after reconnection', error);
+          emitter.emit(EVENTS.NOTIFY_ALERT, formatError('onreconnected', error));
+        }
+      });
 
       return true;
     } catch (error) {
       console.log('Error connecting to MerchantsHub', error);
+      clearInterval(this.interval);
+      this.cleanUp();
       emitter.emit(EVENTS.MERCHANTS_CONNECTION_ERROR, this);
       emitter.emit(EVENTS.NOTIFY_ALERT, formatError('MerchantsHub - initialize', error));
-      clearInterval(this.interval);
       return false;
     }
   }
