@@ -150,6 +150,10 @@ async function start() {
         console.log('No channels registered');
         return;
       }
+      console.log(
+        'Registered channels:',
+        dbChannels.map(({ channelId, guildId }) => ({ guildId, channelId }))
+      );
 
       const { merchants, server } = await merchantsHub.getActiveMerchantsList();
       if (merchants.length) {
