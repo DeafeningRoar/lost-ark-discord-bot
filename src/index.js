@@ -100,8 +100,8 @@ ${JSON.stringify(message, null, 2)}
   }
 }
 
-async function clearMessages(client, hasActiveMerchants, server) {
-  if (hasActiveMerchants) return;
+async function clearMessages(client, hasActiveMerchants, server, error) {
+  if (hasActiveMerchants || error) return;
   console.log('Clearing and reformatting messages');
   try {
     const regex = /Expiración: <t:([0-9]+):R>/;
@@ -160,7 +160,7 @@ async function start() {
         console.log(`Attempting to notify ${merchants.length} active merchants`);
         merchants.forEach(merchant => Emitter.emit(EVENTS.MERCHANT_FOUND, { merchant, server, channel }));
       } else {
-        console.log(`No active merchants to notify (error? ${error})`);
+        console.log(`No active merchants to notify (Error: ${error})`);
       }
     });
 
@@ -221,11 +221,11 @@ async function start() {
       );
     });
 
-    Emitter.on(EVENTS.MERCHANTS_LIST_CHECK, async ({ merchants, server }) => {
+    Emitter.on(EVENTS.MERCHANTS_LIST_CHECK, async ({ merchants, server, error }) => {
       if (!discord.client?.isReady?.()) {
         throw new Error(`${EVENTS.MERCHANT_FOUND} - Discord client not ready`);
       }
-      await clearMessages(discord.client, Boolean(merchants?.length), server);
+      await clearMessages(discord.client, Boolean(merchants?.length), server, error);
     });
 
     /******* Error Event Listeners *******/
