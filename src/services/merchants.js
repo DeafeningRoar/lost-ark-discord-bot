@@ -4,7 +4,6 @@ const emitter = require('./eventEmitter');
 
 const { formatError } = require('../utils');
 const { FIVE_MINUTES_MS, MERCHANTS_HUB_ACTIONS, EVENTS } = require('../config/constants');
-const activeList = require('../../example-active-merchants-list.json');
 
 class MerchantsHub {
   constructor({ server = 'Yorn' } = {}) {
@@ -35,11 +34,11 @@ class MerchantsHub {
         MERCHANTS_HUB_ACTIONS.GET_KNOWN_ACTIVE_MERCHANT_GROUPS,
         this.server
       );
-      return { server: this.server, merchants };
+      return { server: this.server, merchants, error: false };
     } catch (error) {
       console.log('Error fetching active merchants list', error);
       emitter.emit(EVENTS.NOTIFY_ALERT, formatError('getActiveMerchantsList', error));
-      return { server: this.server, merchants: [] };
+      return { server: this.server, merchants: [], error: true };
     }
   }
 
@@ -52,6 +51,10 @@ class MerchantsHub {
     this.connection.on(MERCHANTS_HUB_ACTIONS.UPDATE_VOTE_TOTAL, (merchantId, votes) => {
       console.log('Received merchant votes updated event', { merchantId, votes });
       emitter.emit(EVENTS.MERCHANT_VOTES_CHANED, { server: this.server, merchantId, votes });
+    });
+
+    this.connection.onreconnecting(error => {
+      emitter.emit(EVENTS.MERCHANTS_HUB_RECONNECTING, formatError('Reconnecting', error));
     });
 
     this.connection.onreconnected(() => {

@@ -15,6 +15,7 @@ const EVENTS = {
   MERCHANT_VOTES_CHANED: 'MerchantVotesChanged',
   MERCHANTS_HUB_RECONNECTED: 'MerchantsHubReconnected',
   MERCHANTS_CONNECTION_ERROR: 'MerchantsConnectionError',
+  MERCHANTS_HUB_RECONNECTING: 'MerchantsHubReconnecting',
   ERROR: 'error',
   DISCORD_CONNECTION_ERROR: 'DiscordConnectionError',
   DISCORD_READY: 'DiscordReady',

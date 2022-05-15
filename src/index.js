@@ -155,12 +155,12 @@ async function start() {
         dbChannels.map(({ channelId, guildId }) => ({ guildId, channelId }))
       );
 
-      const { merchants, server } = await merchantsHub.getActiveMerchantsList();
-      if (merchants.length) {
+      const { merchants, server, error } = await merchantsHub.getActiveMerchantsList();
+      if (!error && merchants.length) {
         console.log(`Attempting to notify ${merchants.length} active merchants`);
         merchants.forEach(merchant => Emitter.emit(EVENTS.MERCHANT_FOUND, { merchant, server, channel }));
       } else {
-        console.log('No active merchants to notify');
+        console.log(`No active merchants to notify (error? ${error})`);
       }
     });
 
@@ -268,8 +268,17 @@ async function start() {
       }
     });
 
-    Emitter.on(EVENTS.MERCHANTS_HUB_RECONNECTED, () => {
+    Emitter.on(EVENTS.MERCHANTS_HUB_RECONNECTED, async () => {
+      if (discord.client?.isReady?.()) {
+        await notifyAlert({ message: 'Reconnected to MerchantsHub', client: discord.client });
+      }
       Emitter.emit(EVENTS.DISCORD_READY);
+    });
+
+    Emitter.on(EVENTS.MERCHANTS_HUB_RECONNECTING, async () => {
+      if (discord.client?.isReady?.()) {
+        await notifyAlert({ message: 'Reconnecting to MerchantsHub', client: discord.client });
+      }
     });
 
     await checkConnection();
@@ -286,7 +295,8 @@ async function start() {
       EVENTS.MERCHANTS_CONNECTION_ERROR,
       EVENTS.ERROR,
       EVENTS.NOTIFY_ALERT,
-      EVENTS.MERCHANTS_HUB_RECONNECTED
+      EVENTS.MERCHANTS_HUB_RECONNECTED,
+      EVENTS.MERCHANTS_HUB_RECONNECTING
     ].forEach(e => Emitter.removeAllListeners(e));
     Emitter.emit(EVENTS.PROCESS_ERROR);
   }
