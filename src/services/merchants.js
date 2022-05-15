@@ -60,6 +60,7 @@ class MerchantsHub {
     });
 
     this.interval = setInterval(async () => {
+      console.log('Fetching active merchants list');
       const merchantsList = await this.getActiveMerchantsList();
       emitter.emit(EVENTS.MERCHANTS_LIST_CHECK, merchantsList);
     }, FIVE_MINUTES_MS);

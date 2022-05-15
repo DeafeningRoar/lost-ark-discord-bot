@@ -84,7 +84,6 @@ async function notifyAlert({ message, client }) {
       console.log('No alert channels to notify');
       return;
     }
-    console.log('@@@@@@@@@', message);
     const alertChannels = dbChannels.map(({ channelId }) => client.channels.cache.get(channelId));
     await Promise.all(
       alertChannels.map(async channel =>
