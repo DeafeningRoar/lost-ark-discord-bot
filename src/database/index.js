@@ -1,6 +1,6 @@
 const knex = require('knex');
 const uuid = require('uuid').v4;
-const config = require('../knexFile');
+const config = require('../../knexFile');
 
 const db = knex(config[process.env.NODE_ENV || 'development']);
 

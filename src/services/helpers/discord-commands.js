@@ -1,4 +1,4 @@
-const { insertChannel, removeChannel, getChannel, removeChannels } = require('./database');
+const { insertChannel, removeChannel, getChannel, removeChannels } = require('../../database');
 
 const COMMANDS_LIST = {
   SET_CHANNEL: '/setchannel',
@@ -37,7 +37,7 @@ async function removeChannelId(message) {
       return false;
     }
 
-    await removeChannel(message.channelId, message.guildId);
+    await removeChannel(message.channelId, message.guildId, false);
     await message.reply('Removed current channel');
     return true;
   } catch (error) {
