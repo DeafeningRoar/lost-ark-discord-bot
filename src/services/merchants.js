@@ -18,7 +18,13 @@ class MerchantsHub {
         skipNegotiation: true,
         transport: signalR.HttpTransportType.WebSockets
       })
-      .withAutomaticReconnect([FIVE_MINUTES_MS, FIVE_MINUTES_MS, FIVE_MINUTES_MS, FIVE_MINUTES_MS, FIVE_MINUTES_MS])
+      .withAutomaticReconnect([
+        FIVE_MINUTES_MS / 10,
+        FIVE_MINUTES_MS / 2.5,
+        FIVE_MINUTES_MS,
+        FIVE_MINUTES_MS,
+        FIVE_MINUTES_MS
+      ])
       .configureLogging(Number(process.env.SIGNALR_LOG_LEVEL || 1))
       .build();
 
@@ -52,7 +58,10 @@ class MerchantsHub {
     }
   }
 
-  initializeSubscriptions() {
+  async initializeSubscriptions() {
+    await this.connection.invoke(MERCHANTS_HUB_ACTIONS.SUBSCRIBE_TO_SERVER, this.server);
+    console.log('Subscribed to MerchantsHub server', this.server);
+
     this.connection.on(MERCHANTS_HUB_ACTIONS.UPDATE_MERCHANT_GROUP, (server, merchant) => {
       console.log('Received found merchant event', { server, merchant });
       emitter.emit(EVENTS.MERCHANT_FOUND, { server, merchant });
@@ -75,10 +84,7 @@ class MerchantsHub {
       await this.connection.start();
       console.log('Successfully connected to MerchantsHub');
 
-      await this.connection.invoke('SubscribeToServer', this.server);
-      console.log('Subscribed to MerchantsHub server', this.server);
-
-      this.initializeSubscriptions();
+      await this.initializeSubscriptions();
 
       this.interval = setInterval(async () => {
         console.log('Fetching active merchants list');
@@ -92,11 +98,11 @@ class MerchantsHub {
         emitter.emit(EVENTS.MERCHANTS_HUB_RECONNECTING, formatError('Reconnecting', error));
       });
 
-      this.connection.onreconnected(() => {
+      this.connection.onreconnected(async () => {
         try {
           console.log('Reconnected to MerchantsHub');
           this.cleanUp();
-          this.initializeSubscriptions();
+          await this.initializeSubscriptions();
           emitter.emit(EVENTS.MERCHANTS_HUB_RECONNECTED);
         } catch (error) {
           console.log('Error after reconnection', error);
