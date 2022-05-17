@@ -51,7 +51,7 @@ class MerchantsHub {
   cleanUp() {
     try {
       this.connection.off(MERCHANTS_HUB_ACTIONS.UPDATE_MERCHANT_GROUP);
-      this.connection.off(MERCHANTS_HUB_ACTIONS.UPDATE_VOTE_TOTAL);
+      this.connection.off(MERCHANTS_HUB_ACTIONS.UPDATE_VOTES);
     } catch (error) {
       console.log('Error cleaning up event listeners', error);
       emitter.emit(EVENTS.NOTIFY_ALERT, formatError('cleanUp', error));
@@ -67,9 +67,11 @@ class MerchantsHub {
       emitter.emit(EVENTS.MERCHANT_FOUND, { server, merchant });
     });
 
-    this.connection.on(MERCHANTS_HUB_ACTIONS.UPDATE_VOTE_TOTAL, (merchantId, votes) => {
-      console.log('Received merchant votes updated event', { merchantId, votes });
-      emitter.emit(EVENTS.MERCHANT_VOTES_CHANED, { server: this.server, merchantId, votes });
+    this.connection.on(MERCHANTS_HUB_ACTIONS.UPDATE_VOTES, updatedVotes => {
+      console.log('Received merchant votes updated event', updatedVotes);
+      updatedVotes.forEach(({ id: merchantId, votes }) => {
+        emitter.emit(EVENTS.MERCHANT_VOTES_CHANED, { server: this.server, merchantId, votes });
+      });
     });
   }
 

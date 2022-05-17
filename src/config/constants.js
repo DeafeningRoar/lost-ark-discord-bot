@@ -3,7 +3,7 @@ const FIVE_MINUTES_MS = 300000;
 const MERCHANTS_HUB_ACTIONS = {
   GET_KNOWN_ACTIVE_MERCHANT_GROUPS: 'GetKnownActiveMerchantGroups',
   UPDATE_MERCHANT_GROUP: 'UpdateMerchantGroup',
-  UPDATE_VOTE_TOTAL: 'UpdateVoteTotal',
+  UPDATE_VOTES: 'UpdateVotes',
   SUBSCRIBE_TO_SERVER: 'SubscribeToServer'
 };
 
