@@ -58,7 +58,7 @@ Votos: ${votes}
         await insertMessage(message.id, id, channel.id);
       } catch (error) {
         console.log(`Error notifying merchant to channel ${channel.id} (${channel.name})`, error);
-        Emitter.emit(EVENTS.NOTIFY_ALERT, formatError('motifyMerchantFound', error));
+        Emitter.emit(EVENTS.NOTIFY_ALERT, formatError('notifyMerchantFound', error));
       }
     })
   );
