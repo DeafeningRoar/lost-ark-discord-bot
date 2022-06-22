@@ -142,6 +142,7 @@ async function start() {
 
       if (merchantsHub.connection?.state !== 'Connected') {
         console.log('MerchantsHub not connected');
+        Emitter.emit(EVENTS.MERCHANTS_CONNECTION_ERROR, merchantsHub);
         return;
       }
 

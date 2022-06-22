@@ -77,7 +77,8 @@ class MerchantsHub {
 
   async initialize() {
     try {
-      if (this.connection !== null || (this.connection && this.connection.status === 'Connected')) {
+      if (this.connection?.state === 'Connected') {
+        console.log('Current MerchantsHub connection state', { status: this.connection?.state });
         return false;
       }
       console.log('Connecting to MerchantsHub');
@@ -110,6 +111,10 @@ class MerchantsHub {
           console.log('Error after reconnection', error);
           emitter.emit(EVENTS.NOTIFY_ALERT, formatError('onreconnected', error));
         }
+      });
+
+      this.connection.on('error', error => {
+        emitter.emit(EVENTS.NOTIFY_ALERT, formatError('MerchantsHub - on error', error));
       });
 
       return true;
