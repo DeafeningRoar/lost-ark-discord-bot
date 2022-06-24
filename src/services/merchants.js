@@ -19,7 +19,7 @@ class MerchantsHub {
         transport: signalR.HttpTransportType.WebSockets
       })
       .withAutomaticReconnect([
-        FIVE_MINUTES_MS / 10,
+        FIVE_MINUTES_MS / 5,
         FIVE_MINUTES_MS / 2.5,
         FIVE_MINUTES_MS,
         FIVE_MINUTES_MS,
@@ -28,8 +28,8 @@ class MerchantsHub {
       .configureLogging(Number(process.env.SIGNALR_LOG_LEVEL || 1))
       .build();
 
-    this.connection.serverTimeoutInMilliseconds = FIVE_MINUTES_MS * 2;
-    this.connection.keepAliveIntervalInMilliseconds = FIVE_MINUTES_MS * 1.2;
+    this.connection.serverTimeoutInMilliseconds = FIVE_MINUTES_MS * 1.6; // 8 minutes
+    this.connection.keepAliveIntervalInMilliseconds = FIVE_MINUTES_MS * 0.8; // 4 minutes
 
     return this.connection;
   }
