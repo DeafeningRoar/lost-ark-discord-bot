@@ -28,8 +28,8 @@ class MerchantsHub {
       .configureLogging(Number(process.env.SIGNALR_LOG_LEVEL || 1))
       .build();
 
-    this.connection.serverTimeoutInMilliseconds = FIVE_MINUTES_MS * 1.6; // 8 minutes
-    this.connection.keepAliveIntervalInMilliseconds = FIVE_MINUTES_MS * 0.8; // 4 minutes
+    this.connection.serverTimeoutInMilliseconds = FIVE_MINUTES_MS * 2;
+    this.connection.keepAliveIntervalInMilliseconds = FIVE_MINUTES_MS * 1.2;
 
     return this.connection;
   }
@@ -93,7 +93,7 @@ class MerchantsHub {
         console.log('Fetching active merchants list');
         const merchantsList = await this.getActiveMerchantsList();
         emitter.emit(EVENTS.MERCHANTS_LIST_CHECK, merchantsList);
-      }, FIVE_MINUTES_MS);
+      }, FIVE_MINUTES_MS / 5);
 
       console.log('Initialized MerchantsHub subscriptions');
 
