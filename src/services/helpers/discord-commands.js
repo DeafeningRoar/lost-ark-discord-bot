@@ -18,7 +18,7 @@ async function setChannelId(message) {
       return false;
     }
 
-    const type = message.split(' ')[1];
+    const type = message.content.split(' ')[1];
 
     if (!CHANNEL_TYPES.includes(type)) {
       console.log(`Invalid channel type ${type} for channel ${message.channelId} in guild ${message.guildId}`);
@@ -64,7 +64,7 @@ async function setChannelId(message) {
       type
     });
     await message.reply(`Using current channel for ${type}`);
-    return true;
+    return { isInsert: true, type };
   } catch (error) {
     console.log('Set channel error', error);
     return false;
@@ -77,7 +77,7 @@ async function removeChannelId(message) {
       return false;
     }
 
-    const type = message.split(' ')[1];
+    const type = message.content.split(' ')[1];
 
     if (!CHANNEL_TYPES.includes(type)) {
       console.log(`Invalid channel type ${type} for channel ${message.channelId} in guild ${message.guildId}`);
@@ -216,17 +216,26 @@ async function removeAlertChannel(message) {
 
 const COMMAND_HANDLERS = {
   [COMMANDS_LIST.SET_CHANNEL]: setChannelId,
-  [COMMANDS_LIST.REMOVE_CHANNEL]: '',
-  [COMMANDS_LIST.CLEAR_GUILD]: '',
-  [COMMANDS_LIST.CLEAR_ALL]: '',
-  [COMMANDS_LIST.SET_ALERT_CHANNEL]: '',
-  [COMMANDS_LIST.REMOVE_ALERT]: ''
+  [COMMANDS_LIST.REMOVE_CHANNEL]: removeChannelId,
+  [COMMANDS_LIST.CLEAR_GUILD]: clearChannels,
+  [COMMANDS_LIST.CLEAR_ALL]: clearChannels,
+  [COMMANDS_LIST.SET_ALERT_CHANNEL]: setAlertChannel,
+  [COMMANDS_LIST.REMOVE_ALERT]: removeAlertChannel
+};
+
+const getCommandHandler = message => {
+  const [command] = message.content.split(' ');
+  const handler = COMMAND_HANDLERS[command];
+
+  if (!handler) {
+    return;
+  }
+
+  return handler;
 };
 
 module.exports = {
-  setChannelId,
-  removeChannelId,
-  clearChannels,
-  setAlertChannel,
-  removeAlertChannel
+  getCommandHandler,
+  COMMANDS_LIST,
+  CHANNEL_TYPES
 };

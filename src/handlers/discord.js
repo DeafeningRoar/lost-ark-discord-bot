@@ -1,12 +1,6 @@
 const { Emitter } = require('../services');
 const { EVENTS } = require('../config/constants');
-const {
-  setChannelId,
-  removeChannelId,
-  clearChannels,
-  setAlertChannel,
-  removeAlertChannel
-} = require('../services/helpers/discord-commands');
+const { getCommandHandler, CHANNEL_TYPES } = require('../services/helpers/discord-commands');
 const Discord = require('../services/discord');
 const MerchantsHub = require('../services/merchants');
 const Channels = require('../database/channels');
@@ -52,15 +46,12 @@ module.exports = ({ discord, merchantsHub }) => {
 
   Emitter.on(EVENTS.DISCORD_MESSAGE_CREATED, async ({ message, client }) => {
     if (message.author.bot || !message.member.permissions.has('ADMINISTRATOR')) return;
-    const [successSet] = await Promise.all([
-      setChannelId(message),
-      removeChannelId(message),
-      clearChannels(message),
-      setAlertChannel(message),
-      removeAlertChannel(message)
-    ]);
+    const commandHandler = getCommandHandler(message);
 
-    if (successSet) {
+    if (!commandHandler) return;
+    const result = await commandHandler(message);
+
+    if (result?.isInsert === true && result?.type === CHANNEL_TYPES[0]) {
       console.log(`Notifying active merchants to new channel ${message.channelId} (${message.channel.name})`);
       Emitter.emit(EVENTS.DISCORD_READY, client.channels.cache.get(message.channelId));
     }
