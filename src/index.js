@@ -29,7 +29,7 @@ async function start() {
               return;
             }
 
-            await notifyAlert({ meesage: formatError('Event error', error), client: discord.client });
+            await notifyAlert({ message: formatError('Event error', error), client: discord.client });
           })
         );
       }
