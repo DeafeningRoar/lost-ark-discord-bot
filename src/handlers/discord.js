@@ -51,7 +51,7 @@ module.exports = ({ discord, merchantsHub }) => {
   });
 
   Emitter.on(EVENTS.DISCORD_MESSAGE_CREATED, async ({ message, client }) => {
-    if (message.author.bot) return;
+    if (message.author.bot || !message.member.permissions.has('ADMINISTRATOR')) return;
     const [successSet] = await Promise.all([
       setChannelId(message),
       removeChannelId(message),
