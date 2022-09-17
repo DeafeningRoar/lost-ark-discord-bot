@@ -31,8 +31,9 @@ async function notifyMerchantFound({ channel, merchant, server }) {
         }
 
         if (
-          card.rarity < Number(process.env.CARD_RARITY_THRESHOLD) &&
-          rapport.rarity < Number(process.env.RAPPORT_RARITY_THRESHOLD)
+          card.rarity < Number(process.env.CARD_RARITY_THRESHOLD) ||
+          rapport.rarity < Number(process.env.RAPPORT_RARITY_THRESHOLD) ||
+          !process.env.CARD_WHITELIST.includes(card.name.toLowerCase())
         ) {
           return;
         }
