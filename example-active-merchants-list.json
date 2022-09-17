@@ -74,5 +74,20 @@
         "votes": 3
       }
     ]
+  },
+  {
+    "id": 0,
+    "server": "Yorn",
+    "merchantName": "Oliver",
+    "activeMerchants": [
+      {
+        "id": "234c99a4-4bc6-4741-a841-08da34ed18a9",
+        "name": "Oliver",
+        "zone": "Forest of Giants",
+        "card": { "name": "Mokamoka", "rarity": 3 },
+        "rapport": { "name": "Mokoko Carrot", "rarity": 3 },
+        "votes": 3
+      }
+    ]
   }
 ]
