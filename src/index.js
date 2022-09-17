@@ -33,7 +33,7 @@ async function notifyMerchantFound({ channel, merchant, server }) {
         if (
           card.rarity < Number(process.env.CARD_RARITY_THRESHOLD) ||
           rapport.rarity < Number(process.env.RAPPORT_RARITY_THRESHOLD) ||
-          !process.env.CARD_WHITELIST.includes(card.name.toLowerCase())
+          !JSON.parse(process.env.CARD_WHITELIST || '[]').includes(card.name.toLowerCase())
         ) {
           return;
         }
@@ -133,6 +133,7 @@ async function clearMessages(client, hasActiveMerchants, server, error) {
 
 async function start() {
   try {
+    console.log(process.env.CARD_WHITELIST, typeof process.env.CARD_WHITELIST, JSON.parse(process.env.CARD_WHITELIST));
     const discord = new Discord();
     const merchantsHub = new MerchantsHub({ server: 'Yorn' });
 
