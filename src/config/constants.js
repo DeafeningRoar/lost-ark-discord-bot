@@ -23,7 +23,9 @@ const EVENTS = {
   DISCORD_MESSAGE_CREATED: 'DiscordMessageCreated',
   NOTIFY_ALERT: 'NotifyAlert',
   PROCESS_ERROR: 'ProcessError',
-  MERCHANTS_LIST_CHECK: 'MerchantsListCheck'
+  MERCHANTS_LIST_CHECK: 'MerchantsListCheck',
+  ISLAND_ALERT: 'IslandAlert',
+  ISLANDS_CLEANUP: 'IslandsCleanup'
 };
 
 const RARITIES = {

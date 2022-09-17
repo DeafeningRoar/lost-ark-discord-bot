@@ -7,6 +7,16 @@ const Channels = require('../database/channels');
 
 const channelsDB = new Channels();
 
+const checkActiveMerchants = async (merchantsHub, channel) => {
+  const { merchants, server, error } = await merchantsHub.getActiveMerchantsList();
+  if (!error && merchants.length) {
+    console.log(`Attempting to notify ${merchants.length} active merchants`);
+    merchants.forEach(merchant => Emitter.emit(EVENTS.MERCHANT_FOUND, { merchant, server, channel }));
+  } else {
+    console.log(`No active merchants to notify (Error: ${error})`);
+  }
+};
+
 /**
  * @param {Object} params
  * @param {Discord} params.discord
@@ -35,13 +45,7 @@ module.exports = ({ discord, merchantsHub }) => {
       dbChannels.map(({ channelId, guildId }) => ({ guildId, channelId }))
     );
 
-    const { merchants, server, error } = await merchantsHub.getActiveMerchantsList();
-    if (!error && merchants.length) {
-      console.log(`Attempting to notify ${merchants.length} active merchants`);
-      merchants.forEach(merchant => Emitter.emit(EVENTS.MERCHANT_FOUND, { merchant, server, channel }));
-    } else {
-      console.log(`No active merchants to notify (Error: ${error})`);
-    }
+    await checkActiveMerchants(merchantsHub, channel);
   });
 
   Emitter.on(EVENTS.DISCORD_MESSAGE_CREATED, async ({ message, client }) => {

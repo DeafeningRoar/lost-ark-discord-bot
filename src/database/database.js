@@ -6,7 +6,7 @@ const config = require('../../knexFile');
  * @typedef QueryFilter
  *
  * @property {string} key
- * @property {'='|'!='|'>'|'<'|'<='|'>='|'is not'} comparisonOperator
+ * @property {'='|'!='|'>'|'<'|'<='|'>='|'is not'|'is'} comparisonOperator
  * @property {string|number|null} value
  */
 

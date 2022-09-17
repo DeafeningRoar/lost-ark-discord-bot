@@ -1,0 +1,57 @@
+[
+  {
+    "name": "Opportunity Isle",
+    "date": "2022-09-17",
+    "rewards": ["Cartas"],
+    "isSecondSchedule": true
+  },
+  {
+    "name": "Forpe",
+    "date": "2022-09-17",
+    "rewards": ["Cofre de Monedas Pirata"],
+    "isSecondSchedule": true
+  },
+  {
+    "name": "Lush Reed Island",
+    "date": "2022-09-17",
+    "rewards": ["Silver"],
+    "isSecondSchedule": true
+  },
+
+  {
+    "name": "Phantomwing Island",
+    "date": "2022-09-18",
+    "rewards": ["Cofre de Monedas Pirata"],
+    "isSecondSchedule": false
+  },
+  {
+    "name": "Volare Island",
+    "date": "2022-09-18",
+    "rewards": ["Cartas"],
+    "isSecondSchedule": false
+  },
+  {
+    "name": "Asura Island",
+    "date": "2022-09-18",
+    "rewards": ["Silver"],
+    "isSecondSchedule": false
+  },
+  {
+    "name": "Drumbeat Island",
+    "date": "2022-09-18",
+    "rewards": ["Oro"],
+    "isSecondSchedule": true
+  },
+  {
+    "name": "Medeia",
+    "date": "2022-09-18",
+    "rewards": ["Silver"],
+    "isSecondSchedule": true
+  },
+  {
+    "name": "Lush Reed Island",
+    "date": "2022-09-18",
+    "rewards": ["Cartas"],
+    "isSecondSchedule": true
+  }
+]

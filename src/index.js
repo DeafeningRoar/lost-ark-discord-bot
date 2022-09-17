@@ -1,8 +1,8 @@
 if (process.env.NODE_ENV !== 'production') require('dotenv').config();
-const { Discord, Emitter, MerchantsHub } = require('./services');
+const { Discord, Emitter, MerchantsHub, IslandsTracker } = require('./services');
 const { FIVE_MINUTES_MS, EVENTS } = require('./config/constants');
 const { sleep, formatError } = require('./utils');
-const { discordHandlers, merchantsHandlers } = require('./handlers');
+const { discordHandlers, merchantsHandlers, islandsHandlers } = require('./handlers');
 const { notifyAlert } = require('./handlers/helpers/notifications');
 const Channels = require('./database/channels');
 
@@ -12,9 +12,11 @@ async function start() {
   try {
     const discord = new Discord();
     const merchantsHub = new MerchantsHub({ server: 'Yorn' });
+    const islandsTracker = new IslandsTracker();
 
-    discordHandlers({ discord, merchantsHub });
+    discordHandlers({ discord, merchantsHub, islandsTracker });
     merchantsHandlers({ discord });
+    islandsHandlers({ discord, islandsTracker });
 
     /******* Error Event Listeners *******/
 
@@ -56,7 +58,9 @@ async function start() {
       EVENTS.ERROR,
       EVENTS.NOTIFY_ALERT,
       EVENTS.MERCHANTS_HUB_RECONNECTED,
-      EVENTS.MERCHANTS_HUB_RECONNECTING
+      EVENTS.MERCHANTS_HUB_RECONNECTING,
+      EVENTS.ISLAND_ALERT,
+      EVENTS.ISLANDS_CLEANUP
     ].forEach(e => Emitter.removeAllListeners(e));
     Emitter.emit(EVENTS.PROCESS_ERROR);
   }
