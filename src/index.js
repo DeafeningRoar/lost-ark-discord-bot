@@ -1,10 +1,12 @@
 if (process.env.NODE_ENV !== 'production') require('dotenv').config();
-const { checkConnection, getChannel } = require('./database');
 const { Discord, Emitter, MerchantsHub } = require('./services');
 const { FIVE_MINUTES_MS, EVENTS } = require('./config/constants');
 const { sleep, formatError } = require('./utils');
 const { discordHandlers, merchantsHandlers } = require('./handlers');
 const { notifyAlert } = require('./handlers/helpers/notifications');
+const Channels = require('./database/channels');
+
+const channelsDB = new Channels();
 
 async function start() {
   try {
@@ -18,7 +20,7 @@ async function start() {
 
     Emitter.on(EVENTS.ERROR, async error => {
       if (discord.client?.isReady?.()) {
-        const alertChannels = await getChannel({ isAlert: true });
+        const alertChannels = await channelsDB.find([{ key: 'isAlert', comparisonOperator: '=', value: true }]);
         await Promise.all(
           alertChannels.map(async ({ channelId }) => {
             const channel = discord.client.channels.cache.get(channelId);
@@ -39,7 +41,7 @@ async function start() {
       }
     });
 
-    await checkConnection();
+    await channelsDB.connectionCheck();
     await merchantsHub.initialize();
     await discord.initialize();
   } catch (error) {

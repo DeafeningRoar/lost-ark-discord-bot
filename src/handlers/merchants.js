@@ -1,9 +1,13 @@
 const { Emitter } = require('../services');
 const { EVENTS, FIVE_MINUTES_MS, RARITIES } = require('../config/constants');
 const merchants = require('../../merchants.json');
-const { findBy, insertMessage, deleteAll, getAllChannels } = require('../database');
 const Discord = require('../services/discord');
 const { notifyAlert } = require('./helpers/notifications');
+const Messages = require('../database/messages');
+const Channels = require('../database/channels');
+
+const messagesDB = new Messages();
+const channelsDB = new Channels();
 
 const getRemainingTime = () => {
   const currentDate = new Date();
@@ -17,7 +21,19 @@ async function notifyMerchantFound({ channel, merchant, server }) {
       try {
         const { id, name, zone, card, rapport, votes } = activeMerchant;
 
-        const [exists] = await findBy({ merchantId: id, channelId: channel.id });
+        const [exists] = await messagesDB.find([
+          {
+            key: 'merchantId',
+            comparisonOperator: '=',
+            value: id
+          },
+          {
+            key: 'channelId',
+            comparisonOperator: '=',
+            value: channel.id
+          }
+        ]);
+
         if (exists) {
           console.log(`Merchant ${id} (${name}) already notified to channel ${channel.id} (${channel.name})`);
           return;
@@ -50,7 +66,11 @@ Votos: ${votes}
           ]
         });
 
-        await insertMessage(message.id, id, channel.id);
+        await messagesDB.insert({
+          messageId: message.id,
+          merchantId: id,
+          channelId: channel.id
+        });
       } catch (error) {
         console.log(`Error notifying merchant to channel ${channel.id} (${channel.name})`, error);
         Emitter.emit(EVENTS.NOTIFY_ALERT, formatError('notifyMerchantFound', error));
@@ -60,7 +80,18 @@ Votos: ${votes}
 }
 
 async function notifyMerchantVotesChanged({ channel, merchantId, votes, server }) {
-  const [message] = await findBy({ merchantId, channelId: channel.id });
+  const [message] = await messagesDB.find([
+    {
+      key: 'merchantId',
+      comparisonOperator: '=',
+      value: merchantId
+    },
+    {
+      key: 'channelId',
+      comparisonOperator: '=',
+      value: channel.id
+    }
+  ]);
   if (!message) {
     console.log(`No message found for merchantId ${merchantId} and channelId ${channel.id} (${channel.name})`);
     return;
@@ -77,11 +108,28 @@ async function clearMessages(client, hasActiveMerchants, server, error) {
   try {
     const regex = /Expiración: <t:([0-9]+):R>/;
     const regExp = new RegExp(regex, 'g');
-    const dbChannels = await getAllChannels();
+    const dbChannels = await channelsDB.find([
+      {
+        key: 'type',
+        comparisonOperator: '=',
+        value: 'merchants'
+      },
+      {
+        key: 'isAlert',
+        comparisonOperator: '=',
+        value: false
+      }
+    ]);
     const channels = dbChannels.map(({ channelId }) => client.channels.cache.get(channelId));
     await Promise.all(
       channels.map(async channel => {
-        const messages = await findBy({ channelId: channel.id });
+        const messages = await messagesDB.find([
+          {
+            key: 'channelId',
+            comparisonOperator: '=',
+            value: channel.id
+          }
+        ]);
         console.log(`Found ${messages.length} messages for channel ${channel.id} (${channel.name})`);
         await Promise.all(
           messages.map(async ({ messageId }) => {
@@ -98,7 +146,13 @@ async function clearMessages(client, hasActiveMerchants, server, error) {
     console.log('Error formatting messages', error);
     Emitter.emit(EVENTS.NOTIFY_ALERT, formatError('clearMessages', error));
   }
-  await deleteAll();
+  await messagesDB.delete([
+    {
+      key: 'merchantId',
+      comparisonOperator: 'is not',
+      value: null
+    }
+  ]);
 }
 
 /**
@@ -112,7 +166,18 @@ module.exports = ({ discord }) => {
     }
 
     if (!channel) {
-      const dbChannels = await getAllChannels();
+      const dbChannels = await channelsDB.find([
+        {
+          key: 'type',
+          comparisonOperator: '=',
+          value: 'merchants'
+        },
+        {
+          key: 'isAlert',
+          comparisonOperator: '=',
+          value: false
+        }
+      ]);
       await Promise.all(
         dbChannels.map(async ({ channelId }) => {
           const dcChannel = discord.client.channels.cache.get(channelId);
@@ -134,7 +199,18 @@ module.exports = ({ discord }) => {
       throw new Error(`${EVENTS.MERCHANT_VOTES_CHANED} - Discord client not ready`);
     }
 
-    const dbChannels = await getAllChannels();
+    const dbChannels = await channelsDB.find([
+      {
+        key: 'type',
+        comparisonOperator: '=',
+        value: 'merchants'
+      },
+      {
+        key: 'isAlert',
+        comparisonOperator: '=',
+        value: false
+      }
+    ]);
     await Promise.all(
       dbChannels.map(async ({ channelId }) => {
         const channel = discord.client.channels.cache.get(channelId);

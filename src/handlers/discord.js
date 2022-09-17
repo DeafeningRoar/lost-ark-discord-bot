@@ -7,9 +7,11 @@ const {
   setAlertChannel,
   removeAlertChannel
 } = require('../services/helpers/discord-commands');
-const { getAllChannels } = require('../database');
 const Discord = require('../services/discord');
 const MerchantsHub = require('../services/merchants');
+const Channels = require('../database/channels');
+
+const channelsDB = new Channels();
 
 /**
  * @param {Object} params
@@ -28,7 +30,7 @@ module.exports = ({ discord, merchantsHub }) => {
       return;
     }
 
-    const dbChannels = await getAllChannels();
+    const dbChannels = await channelsDB.find([]);
     if (!dbChannels.length) {
       console.log('No channels registered');
       return;
