@@ -1,24 +1,5 @@
 [
   {
-    "name": "Opportunity Isle",
-    "date": "2022-09-17",
-    "rewards": ["Cartas"],
-    "isSecondSchedule": true
-  },
-  {
-    "name": "Forpe",
-    "date": "2022-09-17",
-    "rewards": ["Cofre de Monedas Pirata"],
-    "isSecondSchedule": true
-  },
-  {
-    "name": "Lush Reed Island",
-    "date": "2022-09-17",
-    "rewards": ["Silver"],
-    "isSecondSchedule": true
-  },
-
-  {
     "name": "Phantomwing Island",
     "date": "2022-09-18",
     "rewards": ["Cofre de Monedas Pirata"],
@@ -53,5 +34,269 @@
     "date": "2022-09-18",
     "rewards": ["Cartas"],
     "isSecondSchedule": true
+  },
+
+  {
+    "name": "Forpe",
+    "date": "2022-09-19",
+    "rewards": ["Cartas"],
+    "isSecondSchedule": false
+  },
+  {
+    "name": "Oblivion Isle",
+    "date": "2022-09-19",
+    "rewards": ["Cofre de Monedas Pirata"],
+    "isSecondSchedule": false
+  },
+  {
+    "name": "Tranquil Isle",
+    "date": "2022-09-19",
+    "rewards": ["Silver"],
+    "isSecondSchedule": false
+  },
+
+  {
+    "name": "Monte Island",
+    "date": "2022-09-20",
+    "rewards": ["Cartas"],
+    "isSecondSchedule": false
+  },
+  {
+    "name": "Lagoon Island",
+    "date": "2022-09-20",
+    "rewards": ["Silver"],
+    "isSecondSchedule": false
+  },
+  {
+    "name": "Harmony Island",
+    "date": "2022-09-20",
+    "rewards": ["Cofre de Monedas Pirata"],
+    "isSecondSchedule": false
+  },
+
+  {
+    "name": "Phantomwing Island",
+    "date": "2022-09-21",
+    "rewards": ["Silver"],
+    "isSecondSchedule": false
+  },
+  {
+    "name": "Volare Island",
+    "date": "2022-09-21",
+    "rewards": ["Oro"],
+    "isSecondSchedule": false
+  },
+  {
+    "name": "Opportunity Isle",
+    "date": "2022-09-21",
+    "rewards": ["Cofre de Monedas Pirata"],
+    "isSecondSchedule": false
+  },
+
+  {
+    "name": "Snowpang Island",
+    "date": "2022-09-22",
+    "rewards": ["Cofre de Monedas Pirata"],
+    "isSecondSchedule": false
+  },
+  {
+    "name": "Phantomwing Island",
+    "date": "2022-09-22",
+    "rewards": ["Cartas"],
+    "isSecondSchedule": false
+  },
+  {
+    "name": "Monte Island",
+    "date": "2022-09-22",
+    "rewards": ["Silver"],
+    "isSecondSchedule": false
+  },
+
+  {
+    "name": "Snowpang Island",
+    "date": "2022-09-23",
+    "rewards": ["Silver"],
+    "isSecondSchedule": false
+  },
+  {
+    "name": "Asura Island",
+    "date": "2022-09-23",
+    "rewards": ["Cofre de Monedas Pirata"],
+    "isSecondSchedule": false
+  },
+  {
+    "name": "Tranquil Isle",
+    "date": "2022-09-23",
+    "rewards": ["Cartas"],
+    "isSecondSchedule": false
+  },
+
+  {
+    "name": "Oblivion Isle",
+    "date": "2022-09-24",
+    "rewards": ["Cofre de Monedas Pirata"],
+    "isSecondSchedule": false
+  },
+  {
+    "name": "Lagoon Island",
+    "date": "2022-09-24",
+    "rewards": ["Oro"],
+    "isSecondSchedule": false
+  },
+  {
+    "name": "Drumbeat Island",
+    "date": "2022-09-24",
+    "rewards": ["Cartas"],
+    "isSecondSchedule": false
+  },
+  {
+    "name": "Forpe",
+    "date": "2022-09-24",
+    "rewards": ["Cofre de Monedas Pirata"],
+    "isSecondSchedule": true
+  },
+  {
+    "name": "Lush Reed Island",
+    "date": "2022-09-24",
+    "rewards": ["Cartas"],
+    "isSecondSchedule": true
+  },
+  {
+    "name": "Medeia",
+    "date": "2022-09-24",
+    "rewards": ["Silver"],
+    "isSecondSchedule": true
+  },
+
+  {
+    "name": "Opportunity Isle",
+    "date": "2022-09-25",
+    "rewards": ["Cofre de Monedas Pirata"],
+    "isSecondSchedule": false
+  },
+  {
+    "name": "Harmony Island",
+    "date": "2022-09-25",
+    "rewards": ["Cartas"],
+    "isSecondSchedule": false
+  },
+  {
+    "name": "Volare Island",
+    "date": "2022-09-25",
+    "rewards": ["Silver"],
+    "isSecondSchedule": false
+  },
+  {
+    "name": "Drumbeat Island",
+    "date": "2022-09-25",
+    "rewards": ["Silver"],
+    "isSecondSchedule": true
+  },
+  {
+    "name": "Snowpang Island",
+    "date": "2022-09-25",
+    "rewards": ["Cofre de Monedas Pirata"],
+    "isSecondSchedule": true
+  },
+  {
+    "name": "Lush Reed Island",
+    "date": "2022-09-25",
+    "rewards": ["Cartas"],
+    "isSecondSchedule": true
+  },
+
+  {
+    "name": "Tranquil Isle",
+    "date": "2022-09-26",
+    "rewards": ["Silver"],
+    "isSecondSchedule": false
+  },
+  {
+    "name": "Monte Island",
+    "date": "2022-09-26",
+    "rewards": ["Cofre de Monedas Pirata"],
+    "isSecondSchedule": false
+  },
+  {
+    "name": "Asura Island",
+    "date": "2022-09-26",
+    "rewards": ["Cartas"],
+    "isSecondSchedule": false
+  },
+
+  {
+    "name": "Opportunity Isle",
+    "date": "2022-09-27",
+    "rewards": ["Oro"],
+    "isSecondSchedule": false
+  },
+  {
+    "name": "Forpe",
+    "date": "2022-09-27",
+    "rewards": ["Cartas"],
+    "isSecondSchedule": false
+  },
+  {
+    "name": "Volare Island",
+    "date": "2022-09-27",
+    "rewards": ["Silver"],
+    "isSecondSchedule": false
+  },
+
+  {
+    "name": "Medeia",
+    "date": "2022-09-28",
+    "rewards": ["Cofre de Monedas Pirata"],
+    "isSecondSchedule": false
+  },
+  {
+    "name": "Harmony Island",
+    "date": "2022-09-28",
+    "rewards": ["Cartas"],
+    "isSecondSchedule": false
+  },
+  {
+    "name": "Phantomwing Island",
+    "date": "2022-09-28",
+    "rewards": ["Silver"],
+    "isSecondSchedule": false
+  },
+
+  {
+    "name": "Lagoon Island",
+    "date": "2022-09-29",
+    "rewards": ["Cofre de Monedas Pirata"],
+    "isSecondSchedule": false
+  },
+  {
+    "name": "Oblivion Isle",
+    "date": "2022-09-29",
+    "rewards": ["Cartas"],
+    "isSecondSchedule": false
+  },
+  {
+    "name": "Medeia",
+    "date": "2022-09-29",
+    "rewards": ["Silver"],
+    "isSecondSchedule": false
+  },
+
+  {
+    "name": "Phantomwing Island",
+    "date": "2022-09-30",
+    "rewards": ["Cofre de Monedas Pirata"],
+    "isSecondSchedule": false
+  },
+  {
+    "name": "Volare Island",
+    "date": "2022-09-30",
+    "rewards": ["Silver"],
+    "isSecondSchedule": false
+  },
+  {
+    "name": "Tranquil Isle",
+    "date": "2022-09-30",
+    "rewards": ["Oro"],
+    "isSecondSchedule": false
   }
 ]
