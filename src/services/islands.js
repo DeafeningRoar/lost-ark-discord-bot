@@ -20,7 +20,7 @@ class IslandTracker {
     const current = moment().utcOffset(tzOffset);
     const currentDate = current.date();
     const currentMonth = current.month() + 1;
-    const isWeekend = [6, 7].includes(current.day());
+    const isWeekend = [0, 6].includes(current.day());
     const isSecondSchedule = current.get('hour') > 15;
 
     return this.islands.filter(island => {
@@ -28,8 +28,13 @@ class IslandTracker {
       const appearanceMonth = new Date(island.date).getUTCMonth() + 1;
       const isToday = appearanceDate === currentDate && appearanceMonth === currentMonth;
 
+      if (!isToday) return false;
+
       if (isWeekend) {
-        return isSecondSchedule ? island.isSecondSchedule && isToday : isToday;
+        if ((isSecondSchedule && !island.isSecondSchedule) || (!isSecondSchedule && island.isSecondSchedule)) {
+          return false;
+        }
+        return isToday;
       }
 
       return isToday;
@@ -49,7 +54,7 @@ class IslandTracker {
         try {
           const islands = this.getDailyIslands();
           const currentTime = moment().utcOffset(tzOffset);
-          const isWeekend = [6, 7].includes(currentTime.day());
+          const isWeekend = [0, 6].includes(currentTime.day());
           let upcomingTime;
           const isStartingSoon = schedules.some(schedule => {
             if (schedule === 15 && !isWeekend) {
