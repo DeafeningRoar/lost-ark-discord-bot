@@ -66,7 +66,13 @@ module.exports = ({ discord, islandsTracker }) => {
               content: `
 **${island.name}**
 Empieza En: <t:${Math.floor(Number(upcomingTime) / 1000)}:R>
-Recompenzas: ${island.rewards.join(', ')}`
+Recompenzas: ${island.rewards.join(', ')}`,
+              files: [
+                {
+                  attachment: __dirname + '/../../assets/islands/' + island.name + '.png',
+                  name: island.name + '.png'
+                }
+              ]
             });
 
             await messagesDB.insert({
