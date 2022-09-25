@@ -21,7 +21,7 @@ module.exports = {
     },
     pool: {
       min: 0,
-      max: 2
+      max: 5
     }
   }
 };
