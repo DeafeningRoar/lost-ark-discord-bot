@@ -10,9 +10,11 @@ const config = require('../../knexFile');
  * @property {string|number|null} value
  */
 
+const db = knex(config[process.env.NODE_ENV || 'development']);
+
 class Database {
   constructor(entity) {
-    this.db = knex(config[process.env.NODE_ENV || 'development']);
+    this.db = db;
     this.entity = entity;
   }
 
