@@ -1,4 +1,5 @@
 if (process.env.NODE_ENV !== 'production') require('dotenv').config();
+const Fastify = require('fastify');
 const { Discord, Emitter, MerchantsHub, IslandsTracker } = require('./services');
 const { FIVE_MINUTES_MS, EVENTS } = require('./config/constants');
 const { sleep, formatError } = require('./utils');
@@ -7,6 +8,10 @@ const { notifyAlert } = require('./handlers/helpers/notifications');
 const Channels = require('./database/channels');
 
 const channelsDB = new Channels();
+
+const fastify = Fastify({
+  logger: true
+});
 
 async function start() {
   try {
@@ -79,4 +84,12 @@ Emitter.on(EVENTS.PROCESS_ERROR, async () => {
   await start();
 });
 
-start();
+fastify.get('/', (request, reply) => {
+  reply.send({ hello: 'world' });
+});
+
+fastify.listen({ port: process.env.PORT || 3000 }, (err, address) => {
+  if (err) throw err;
+
+  start();
+});
