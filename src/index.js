@@ -91,5 +91,5 @@ fastify.get('/', (request, reply) => {
 fastify.listen({ port: process.env.PORT || 3000 }, (err, address) => {
   if (err) throw err;
 
-  start();
+  // start();
 });
