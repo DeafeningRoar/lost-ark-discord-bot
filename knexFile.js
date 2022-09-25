@@ -18,6 +18,10 @@ module.exports = {
     },
     migrations: {
       directory: __dirname + '/data/migrations'
+    },
+    pool: {
+      min: 0,
+      max: 2
     }
   }
 };
