@@ -1,6 +1,6 @@
 {
   "name": "wanderlost-discord",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Push notifications to discord channel",
   "main": "index.js",
   "scripts": {
