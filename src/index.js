@@ -84,12 +84,12 @@ Emitter.on(EVENTS.PROCESS_ERROR, async () => {
   await start();
 });
 
+start();
+
 fastify.get('/', (request, reply) => {
   reply.send({ hello: 'world' });
 });
 
 fastify.listen({ port: process.env.PORT || 3000 }, (err, address) => {
   if (err) throw err;
-
-  start();
 });
