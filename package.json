@@ -4,7 +4,7 @@
   "description": "Push notifications to discord channel",
   "main": "index.js",
   "scripts": {
-    "start": "node src/index.js",
+    "start": "npm run migrate && node src/index.js",
     "dev": "nodemon src/index.js",
     "migrate:make": "knex migrate:make --knexfile knexFile.js",
     "migrate": "knex migrate:latest --knexfile knexFile.js",
