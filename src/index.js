@@ -14,8 +14,8 @@ async function start() {
     const merchantsHub = new MerchantsHub({ server: 'Gienah' });
     const islandsTracker = new IslandsTracker();
 
-    discordHandlers({ discord, merchantsHub, islandsTracker });
-    merchantsHandlers({ discord });
+    discordHandlers({ discord });
+    merchantsHandlers({ discord, merchantsHub });
     islandsHandlers({ discord, islandsTracker });
 
     /******* Error Event Listeners *******/
@@ -60,7 +60,8 @@ async function start() {
       EVENTS.MERCHANTS_HUB_RECONNECTED,
       EVENTS.MERCHANTS_HUB_RECONNECTING,
       EVENTS.ISLAND_ALERT,
-      EVENTS.ISLANDS_CLEANUP
+      EVENTS.ISLANDS_CLEANUP,
+      EVENTS.MERCHANTS_READY
     ].forEach(e => Emitter.removeAllListeners(e));
     Emitter.emit(EVENTS.PROCESS_ERROR);
   }

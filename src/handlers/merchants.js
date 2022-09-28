@@ -2,6 +2,7 @@ const { Emitter } = require('../services');
 const { EVENTS, FIVE_MINUTES_MS, RARITIES } = require('../config/constants');
 const merchants = require('../../merchants.json');
 const Discord = require('../services/discord');
+const MerchantsHub = require('../services/merchants');
 const { notifyAlert } = require('./helpers/notifications');
 const Messages = require('../database/messages');
 const Channels = require('../database/channels');
@@ -156,11 +157,32 @@ async function clearMessages(client, hasActiveMerchants, server, error) {
   ]);
 }
 
+const checkActiveMerchants = async (merchantsHub, channel) => {
+  const { merchants, server, error } = await merchantsHub.getActiveMerchantsList();
+  if (!error && merchants.length) {
+    console.log(`Attempting to notify ${merchants.length} active merchants`);
+    merchants.forEach(merchant => Emitter.emit(EVENTS.MERCHANT_FOUND, { merchant, server, channel }));
+  } else {
+    console.log(`No active merchants to notify (Error: ${error})`);
+  }
+};
+
 /**
  * @param {Object} params
  * @param {Discord} params.discord
+ * @param {MerchantsHub} params.merchantsHub
  */
-module.exports = ({ discord }) => {
+module.exports = ({ discord, merchantsHub }) => {
+  Emitter.on(EVENTS.MERCHANTS_READY, async channel => {
+    if (merchantsHub.connection?.state !== 'Connected') {
+      console.log('MerchantsHub not connected');
+      Emitter.emit(EVENTS.MERCHANTS_CONNECTION_ERROR, merchantsHub);
+      return;
+    }
+
+    await checkActiveMerchants(merchantsHub, channel);
+  });
+
   Emitter.on(EVENTS.MERCHANT_FOUND, async ({ merchant, server, channel }) => {
     if (!discord.client?.isReady?.()) {
       throw new Error(`${EVENTS.MERCHANT_FOUND} - Discord client not ready`);
@@ -243,7 +265,7 @@ module.exports = ({ discord }) => {
 
     if (discord.client?.isReady?.()) {
       await notifyAlert({ client: discord.client, message: 'Successfully reconnected to MerchantsHub' });
-      Emitter.emit(EVENTS.DISCORD_READY);
+      Emitter.emit(EVENTS.MERCHANTS_READY);
     }
   });
 
@@ -251,7 +273,7 @@ module.exports = ({ discord }) => {
     if (discord.client?.isReady?.()) {
       await notifyAlert({ message: 'Reconnected to MerchantsHub', client: discord.client });
     }
-    Emitter.emit(EVENTS.DISCORD_READY);
+    Emitter.emit(EVENTS.MERCHANTS_READY);
   });
 
   Emitter.on(EVENTS.MERCHANTS_HUB_RECONNECTING, async () => {

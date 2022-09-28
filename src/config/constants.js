@@ -17,6 +17,7 @@ const EVENTS = {
   MERCHANTS_HUB_RECONNECTED: 'MerchantsHubReconnected',
   MERCHANTS_CONNECTION_ERROR: 'MerchantsConnectionError',
   MERCHANTS_HUB_RECONNECTING: 'MerchantsHubReconnecting',
+  MERCHANTS_READY: 'MerchantsReady',
   ERROR: 'error',
   DISCORD_CONNECTION_ERROR: 'DiscordConnectionError',
   DISCORD_READY: 'DiscordReady',

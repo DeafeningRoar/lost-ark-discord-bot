@@ -7,31 +7,14 @@ const Channels = require('../database/channels');
 
 const channelsDB = new Channels();
 
-const checkActiveMerchants = async (merchantsHub, channel) => {
-  const { merchants, server, error } = await merchantsHub.getActiveMerchantsList();
-  if (!error && merchants.length) {
-    console.log(`Attempting to notify ${merchants.length} active merchants`);
-    merchants.forEach(merchant => Emitter.emit(EVENTS.MERCHANT_FOUND, { merchant, server, channel }));
-  } else {
-    console.log(`No active merchants to notify (Error: ${error})`);
-  }
-};
-
 /**
  * @param {Object} params
  * @param {Discord} params.discord
- * @param {MerchantsHub} params.merchantsHub
  */
-module.exports = ({ discord, merchantsHub }) => {
-  Emitter.on(EVENTS.DISCORD_READY, async channel => {
+module.exports = ({ discord }) => {
+  Emitter.on(EVENTS.DISCORD_READY, async () => {
     if (!discord.client?.isReady?.()) {
       throw new Error(`${EVENTS.DISCORD_READY} - Discord client not ready`);
-    }
-
-    if (merchantsHub.connection?.state !== 'Connected') {
-      console.log('MerchantsHub not connected');
-      Emitter.emit(EVENTS.MERCHANTS_CONNECTION_ERROR, merchantsHub);
-      return;
     }
 
     const dbChannels = await channelsDB.find([]);
@@ -44,8 +27,6 @@ module.exports = ({ discord, merchantsHub }) => {
       'Registered channels:',
       dbChannels.map(({ channelId, guildId }) => ({ guildId, channelId }))
     );
-
-    await checkActiveMerchants(merchantsHub, channel);
   });
 
   Emitter.on(EVENTS.DISCORD_MESSAGE_CREATED, async ({ message, client }) => {
@@ -57,7 +38,7 @@ module.exports = ({ discord, merchantsHub }) => {
 
     if (result?.isInsert === true && result?.type === CHANNEL_TYPES[0]) {
       console.log(`Notifying active merchants to new channel ${message.channelId} (${message.channel.name})`);
-      Emitter.emit(EVENTS.DISCORD_READY, client.channels.cache.get(message.channelId));
+      Emitter.emit(EVENTS.MERCHANTS_READY, client.channels.cache.get(message.channelId));
     }
   });
 };
