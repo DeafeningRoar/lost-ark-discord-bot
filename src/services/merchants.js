@@ -117,7 +117,6 @@ class MerchantsHub {
         emitter.emit(EVENTS.NOTIFY_ALERT, formatError('MerchantsHub - on error', error));
       });
 
-      emitter.emit(EVENTS.MERCHANTS_READY);
       return true;
     } catch (error) {
       console.log('Error connecting to MerchantsHub', error);
