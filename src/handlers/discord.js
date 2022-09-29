@@ -27,6 +27,8 @@ module.exports = ({ discord }) => {
       'Registered channels:',
       dbChannels.map(({ channelId, guildId }) => ({ guildId, channelId }))
     );
+
+    Emitter.emit(EVENTS.MERCHANTS_READY);
   });
 
   Emitter.on(EVENTS.DISCORD_MESSAGE_CREATED, async ({ message, client }) => {
