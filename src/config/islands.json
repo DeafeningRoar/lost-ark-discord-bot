@@ -188,7 +188,7 @@
   },
 
   {
-    "name": "Phantomwing Island",
+    "name": "Snowpang Island",
     "date": "2022-10-07",
     "rewards": ["Cofre de Monedas Pirata"],
     "isSecondSchedule": false
@@ -296,25 +296,6 @@
     "name": "Snowpang Island",
     "date": "2022-10-10",
     "rewards": ["Cartas"],
-    "isSecondSchedule": false
-  },
-
-  {
-    "name": "Monte Island",
-    "date": "2022-10-11",
-    "rewards": ["Cartas"],
-    "isSecondSchedule": false
-  },
-  {
-    "name": "Harmony Island",
-    "date": "2022-10-11",
-    "rewards": ["Oro"],
-    "isSecondSchedule": false
-  },
-  {
-    "name": "Lush Reed Island",
-    "date": "2022-10-11",
-    "rewards": ["Cofre de Monedas Pirata"],
     "isSecondSchedule": false
   },
 
