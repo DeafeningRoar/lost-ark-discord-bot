@@ -6,7 +6,7 @@ const { formatError } = require('../utils');
 const { FIVE_MINUTES_MS, MERCHANTS_HUB_ACTIONS, EVENTS } = require('../config/constants');
 
 class MerchantsHub {
-  constructor({ server = 'Gienah' } = {}) {
+  constructor({ server = 'Blackfang' } = {}) {
     this.connection = null;
     this.server = server;
     this.interval = null;

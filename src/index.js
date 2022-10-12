@@ -11,7 +11,7 @@ const channelsDB = new Channels();
 async function start() {
   try {
     const discord = new Discord();
-    const merchantsHub = new MerchantsHub({ server: 'Gienah' });
+    const merchantsHub = new MerchantsHub({ server: 'Blackfang' });
     const islandsTracker = new IslandsTracker();
 
     discordHandlers({ discord });
