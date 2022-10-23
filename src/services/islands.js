@@ -62,6 +62,14 @@ class IslandTracker {
         console.log('Executing islands cronjob');
         try {
           await this.setIslands();
+          console.log(`Found ${this.islands.length} in csv file`);
+          if (!this.islands.length) {
+            emitter.emit(
+              EVENTS.NOTIFY_ALERT,
+              formatError('setupTracker - onTick', { message: 'No islands found in file' })
+            );
+          }
+
           const islands = this.getDailyIslands();
           const currentTime = moment().utcOffset(tzOffset);
           const isWeekend = [0, 6].includes(currentTime.day());
