@@ -32,7 +32,10 @@ class IslandTracker {
       if (!isToday) return false;
 
       if (isWeekend) {
-        if ((isSecondSchedule && !island.isSecondSchedule) || (!isSecondSchedule && island.isSecondSchedule)) {
+        if (
+          (isSecondSchedule && island.isSecondSchedule !== 'true') ||
+          (!isSecondSchedule && island.isSecondSchedule === 'true')
+        ) {
           return false;
         }
         return isToday;
