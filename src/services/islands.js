@@ -1,8 +1,9 @@
 const { CronJob } = require('cron');
 const moment = require('moment-timezone');
+const csv = require('csvtojson');
+
 const emitter = require('./eventEmitter');
 const { EVENTS } = require('../config/constants');
-const islandsList = require('../config/islands.json');
 const { formatError } = require('../utils');
 
 const tzOffset = -4;
@@ -10,7 +11,7 @@ const schedules = [11, 13, 15, 19, 21, 23];
 
 class IslandTracker {
   constructor() {
-    this.islands = islandsList;
+    this.islands = [];
     this.dailyIslands = this.getDailyIslands();
     this.job = null;
     this.isStartingSoon = false;
@@ -41,7 +42,15 @@ class IslandTracker {
     });
   }
 
-  setupTracker() {
+  async setIslands() {
+    try {
+      this.islands = await csv({ delimiter: ';' }).fromFile('src/config/islands.csv');
+    } catch (error) {
+      emitter.emit(EVENTS.NOTIFY_ALERT, formatError('setIslands', error));
+    }
+  }
+
+  async setupTracker() {
     if (this.job) {
       emitter.emit(EVENTS.NOTIFY_ALERT, formatError('setupTracker', { message: 'Cron job already started' }));
       return null;
@@ -49,9 +58,10 @@ class IslandTracker {
 
     this.job = new CronJob({
       cronTime: '*/5 * * * *', // Every 5 minutes
-      onTick: () => {
+      onTick: async () => {
         console.log('Executing islands cronjob');
         try {
+          await this.setIslands();
           const islands = this.getDailyIslands();
           const currentTime = moment().utcOffset(tzOffset);
           const isWeekend = [0, 6].includes(currentTime.day());

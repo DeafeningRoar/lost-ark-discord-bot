@@ -15,6 +15,7 @@
   "dependencies": {
     "@microsoft/signalr": "^6.0.6",
     "cron": "^2.1.0",
+    "csvtojson": "^2.0.10",
     "discord.js": "^13.6.0",
     "dotenv": "^16.0.1",
     "knex": "^2.0.0",

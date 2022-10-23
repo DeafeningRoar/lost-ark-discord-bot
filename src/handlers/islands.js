@@ -13,7 +13,7 @@ const messagesDB = new Messages();
  */
 module.exports = ({ discord, islandsTracker }) => {
   Emitter.on(EVENTS.DISCORD_READY, async () => {
-    islandsTracker.setupTracker();
+    await islandsTracker.setupTracker();
   });
 
   Emitter.on(EVENTS.ISLAND_ALERT, async (islands, upcomingTime) => {
@@ -66,7 +66,7 @@ module.exports = ({ discord, islandsTracker }) => {
               content: `
 **${island.name}**
 Empieza En: <t:${Math.floor(Number(upcomingTime) / 1000)}:R>
-Recompenzas: ${island.rewards.join(', ')}`,
+Recompenzas: ${island.rewards}`,
               files: [
                 {
                   attachment: __dirname + '/../../assets/islands/' + island.name + '.png',
