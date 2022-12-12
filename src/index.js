@@ -10,6 +10,7 @@ const channelsDB = new Channels();
 
 async function start() {
   try {
+    console.log('hola mundo');
     const discord = new Discord();
     const merchantsHub = new MerchantsHub({ server: 'Blackfang' });
     const islandsTracker = new IslandsTracker();
