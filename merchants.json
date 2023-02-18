@@ -173,7 +173,13 @@
       "20:30:00",
       "23:30:00"
     ],
-    "Zones": ["Delphi Township", "Melody Forest", "Prisma Valley", "Rattan Hill", "Twilight Mists"],
+    "Zones": [
+      "Delphi Township",
+      "Melody Forest",
+      "Prisma Valley",
+      "Rattan Hill",
+      "Twilight Mists"
+    ],
     "Cards": [
       {
         "Name": "Madam Moonscent",
@@ -221,7 +227,13 @@
       "20:30:00",
       "23:30:00"
     ],
-    "Zones": ["Bitterwind Hill", "Frozen Sea", "Iceblood Plateau", "Icewing Heights", "Lake Eternity"],
+    "Zones": [
+      "Bitterwind Hill",
+      "Frozen Sea",
+      "Iceblood Plateau",
+      "Icewing Heights",
+      "Lake Eternity"
+    ],
     "Cards": [
       {
         "Name": "Javern",
@@ -317,7 +329,13 @@
       "19:30:00",
       "22:30:00"
     ],
-    "Zones": ["Black Anvil Mine", "Hall of Promise", "Iron Hammer Mine", "Unfinished Garden", "Yorn's Cradle"],
+    "Zones": [
+      "Black Anvil Mine",
+      "Hall of Promise",
+      "Iron Hammer Mine",
+      "Unfinished Garden",
+      "Yorn's Cradle"
+    ],
     "Cards": [
       {
         "Name": "Great Castle Neria",
@@ -361,7 +379,13 @@
       "19:30:00",
       "22:30:00"
     ],
-    "Zones": ["Balankar Mountains", "Fesnar Highland", "Parna Forest", "Port Krona", "Vernese Forest"],
+    "Zones": [
+      "Balankar Mountains",
+      "Fesnar Highland",
+      "Parna Forest",
+      "Port Krona",
+      "Vernese Forest"
+    ],
     "Cards": [
       {
         "Name": "Gideon",
@@ -421,7 +445,13 @@
       "20:30:00",
       "21:30:00"
     ],
-    "Zones": ["Battlebound Plains", "Bilbrin Forest", "Lakebar", "Medrick Monastery", "Mount Zagoras"],
+    "Zones": [
+      "Battlebound Plains",
+      "Bilbrin Forest",
+      "Lakebar",
+      "Medrick Monastery",
+      "Mount Zagoras"
+    ],
     "Cards": [
       {
         "Name": "Berhart",
@@ -473,7 +503,12 @@
       "20:30:00",
       "21:30:00"
     ],
-    "Zones": ["Blackrose Chapel", "Borea's Domain", "Croconys Seashore", "Leyar Terrace"],
+    "Zones": [
+      "Blackrose Chapel",
+      "Borea's Domain",
+      "Croconys Seashore",
+      "Leyar Terrace"
+    ],
     "Cards": [
       {
         "Name": "Nox",
@@ -525,7 +560,12 @@
       "20:30:00",
       "21:30:00"
     ],
-    "Zones": ["Forest of Giants", "Seaswept Woods", "Skyreach Steppe", "Sweetwater Forest"],
+    "Zones": [
+      "Forest of Giants",
+      "Seaswept Woods",
+      "Skyreach Steppe",
+      "Sweetwater Forest"
+    ],
     "Cards": [
       {
         "Name": "Egg of Creation",
@@ -577,7 +617,14 @@
       "20:30:00",
       "21:30:00"
     ],
-    "Zones": ["Arid Path", "Nebelhorn", "Riza Falls", "Scraplands", "Totrich", "Windbringer Hill"],
+    "Zones": [
+      "Arid Path",
+      "Nebelhorn",
+      "Riza Falls",
+      "Scraplands",
+      "Totrich",
+      "Windbringer Hills"
+    ],
     "Cards": [
       {
         "Name": "Bergstrom",
@@ -621,7 +668,13 @@
       "20:30:00",
       "21:30:00"
     ],
-    "Zones": ["Breezesome Brae", "Elzowin's Shade", "Glass Lotus Lake", "Lake Shiverwave", "Xeneela Ruins"],
+    "Zones": [
+      "Breezesome Brae",
+      "Elzowin's Shade",
+      "Glass Lotus Lake",
+      "Lake Shiverwave",
+      "Xeneela Ruins"
+    ],
     "Cards": [
       {
         "Name": "Alifer",
@@ -673,7 +726,12 @@
       "20:30:00",
       "21:30:00"
     ],
-    "Zones": ["Secret Forest", "Starsand Beach", "Tideshelf Path", "Tikatika Colony"],
+    "Zones": [
+      "Secret Forest",
+      "Starsand Beach",
+      "Tideshelf Path",
+      "Tikatika Colony"
+    ],
     "Cards": [
       {
         "Name": "Cicerra",
@@ -767,6 +825,85 @@
       },
       {
         "Name": "Necromancer's Records",
+        "Rarity": "Legendary"
+      }
+    ]
+  },
+  "Serihan": {
+    "Name": "Serihan",
+    "Region": "Rowen",
+    "SortOrder": 15,
+    "AppearanceTimes": ["01:30:00", "09:30:00", "15:30:00", "21:30:00"],
+    "Zones": ["Fang River", "The Wolflands"],
+    "Cards": [
+      {
+        "Name": "Revellos",
+        "Rarity": "Uncommon"
+      },
+      {
+        "Name": "Rowen Zenlord",
+        "Rarity": "Uncommon"
+      },
+      {
+        "Name": "Anke",
+        "Rarity": "Rare"
+      },
+      {
+        "Name": "Arno",
+        "Rarity": "Rare"
+      },
+      {
+        "Name": "Baskia",
+        "Rarity": "Rare"
+      },
+      {
+        "Name": "Hanun",
+        "Rarity": "Rare"
+      },
+      {
+        "Name": "Marinna",
+        "Rarity": "Rare"
+      },
+      {
+        "Name": "Piela",
+        "Rarity": "Rare"
+      },
+      {
+        "Name": "Sylus",
+        "Rarity": "Rare"
+      },
+      {
+        "Name": "Wilhelm",
+        "Rarity": "Rare"
+      },
+      {
+        "Name": "Danika",
+        "Rarity": "Epic"
+      },
+      {
+        "Name": "Myun Hidaka",
+        "Rarity": "Epic"
+      },
+      {
+        "Name": "Osphere",
+        "Rarity": "Epic"
+      }
+    ],
+    "Rapports": [
+      {
+        "Name": "Enya Balm",
+        "Rarity": "Epic"
+      },
+      {
+        "Name": "Top Quality Beef Jerky",
+        "Rarity": "Epic"
+      },
+      {
+        "Name": "Wolf Fang Necklace",
+        "Rarity": "Epic"
+      },
+      {
+        "Name": "Warm Earmuffs",
         "Rarity": "Legendary"
       }
     ]
