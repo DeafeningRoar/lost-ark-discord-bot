@@ -1,238 +1,232 @@
 name;date;rewards;isSecondSchedule
-Lagoon Island;2023-03-01;Cartas;false
-Snowpang Island;2023-03-01;Cofre de Monedas Pirata;false
-Drumbeat Island;2023-03-01;Oro;false
-Harmony Island;2023-03-02;Cofre de Monedas Pirata;false
-Tranquil Isle;2023-03-02;Silver;false
-Forpe;2023-03-02;Cartas;false
-Lush Reed Island;2023-03-03;Cofre de Monedas Pirata;false
-Volare Island;2023-03-03;Silver;false
-Monte Island;2023-03-03;Cartas;false
-Drumbeat Island;2023-03-04;Oro;false
-Volare Island;2023-03-04;Silver;false
-Phantomwing Island;2023-03-04;Cartas;false
-Opportunity Isle;2023-03-04;Cartas;true
-Oblivion Isle;2023-03-04;Cofre de Monedas Pirata;true
-Forpe;2023-03-04;Silver;true
-Asura Island;2023-03-05;Silver;false
-Snowpang Island;2023-03-05;Cofre de Monedas Pirata;false
-Tranquil Isle;2023-03-05;Cartas;false
-Lush Reed Island;2023-03-05;Cartas;true
-Lagoon Island;2023-03-05;Silver;true
-Monte Island;2023-03-05;Cofre de Monedas Pirata;true
-Opportunity Isle;2023-03-06;Silver;false
-Harmony Island;2023-03-06;Cartas;false
-Medeia;2023-03-06;Cofre de Monedas Pirata;false
-Lush Reed Island;2023-03-07;Cartas;false
-Oblivion Isle;2023-03-07;Cofre de Monedas Pirata;false
-Phantomwing Island;2023-03-07;Silver;false
-Tranquil Isle;2023-03-08;Cofre de Monedas Pirata;false
-Lagoon Island;2023-03-08;Oro;false
-Volare Island;2023-03-08;Silver;false
-Monte Island;2023-03-09;Silver;false
-Medeia;2023-03-09;Cofre de Monedas Pirata;false
-Asura Island;2023-03-09;Cartas;false
-Snowpang Island;2023-03-10;Cartas;false
-Opportunity Isle;2023-03-10;Cofre de Monedas Pirata;false
-Drumbeat Island;2023-03-10;Silver;false
-Volare Island;2023-03-11;Cartas;false
-Harmony Island;2023-03-11;Cofre de Monedas Pirata;false
-Forpe;2023-03-11;Silver;false
-Oblivion Isle;2023-03-11;Cartas;true
-Lush Reed Island;2023-03-11;Oro;true
-Lagoon Island;2023-03-11;Cofre de Monedas Pirata;true
-Drumbeat Island;2023-03-12;Cofre de Monedas Pirata;false
-Asura Island;2023-03-12;Cartas;false
-Forpe;2023-03-12;Silver;false
-Phantomwing Island;2023-03-12;Cartas;true
-Snowpang Island;2023-03-12;Cofre de Monedas Pirata;true
-Monte Island;2023-03-12;Silver;true
-Tranquil Isle;2023-03-13;Silver;false
-Medeia;2023-03-13;Cartas;false
-Opportunity Isle;2023-03-13;Cofre de Monedas Pirata;false
-Harmony Island;2023-03-14;Oro;false
-Phantomwing Island;2023-03-14;Cartas;false
-Monte Island;2023-03-14;Silver;false
-Drumbeat Island;2023-03-15;Cartas;false
-Volare Island;2023-03-15;Silver;false
-Harmony Island;2023-03-15;Cofre de Monedas Pirata;false
-Medeia;2023-03-16;Cofre de Monedas Pirata;false
-Lush Reed Island;2023-03-16;Silver;false
-Opportunity Isle;2023-03-16;Cartas;false
-Forpe;2023-03-17;Silver;false
-Tranquil Isle;2023-03-17;Cofre de Monedas Pirata;false
-Asura Island;2023-03-17;Oro;false
-Lagoon Island;2023-03-18;Cartas;false
-Oblivion Isle;2023-03-18;Cofre de Monedas Pirata;false
-Snowpang Island;2023-03-18;Silver;false
-Phantomwing Island;2023-03-18;Cartas;true
-Medeia;2023-03-18;Cofre de Monedas Pirata;true
-Lush Reed Island;2023-03-18;Silver;true
-Oblivion Isle;2023-03-19;Silver;false
-Drumbeat Island;2023-03-19;Cofre de Monedas Pirata;false
-Lagoon Island;2023-03-19;Cartas;false
-Harmony Island;2023-03-19;Cofre de Monedas Pirata;true
-Tranquil Isle;2023-03-19;Oro;true
-Volare Island;2023-03-19;Cartas;true
-Forpe;2023-03-20;Cofre de Monedas Pirata;false
-Asura Island;2023-03-20;Cartas;false
-Opportunity Isle;2023-03-20;Silver;false
-Monte Island;2023-03-21;Oro;false
-Snowpang Island;2023-03-21;Silver;false
-Medeia;2023-03-21;Cartas;false
-Monte Island;2023-03-22;Cartas;false
-Volare Island;2023-03-22;Silver;false
-Phantomwing Island;2023-03-22;Cofre de Monedas Pirata;false
-Tranquil Isle;2023-03-23;Cartas;false
-Snowpang Island;2023-03-23;Silver;false
-Drumbeat Island;2023-03-23;Cofre de Monedas Pirata;false
-Lagoon Island;2023-03-24;Cartas;false
-Lush Reed Island;2023-03-24;Cofre de Monedas Pirata;false
-Asura Island;2023-03-24;Silver;false
-Harmony Island;2023-03-25;Oro;false
-Forpe;2023-03-25;Silver;false
-Opportunity Isle;2023-03-25;Cofre de Monedas Pirata;false
-Oblivion Isle;2023-03-25;Silver;true
-Snowpang Island;2023-03-25;Cartas;true
-Phantomwing Island;2023-03-25;Cofre de Monedas Pirata;true
-Harmony Island;2023-03-26;Cartas;false
-Lush Reed Island;2023-03-26;Silver;false
-Monte Island;2023-03-26;Cofre de Monedas Pirata;false
-Opportunity Isle;2023-03-26;Silver;true
-Lagoon Island;2023-03-26;Cofre de Monedas Pirata;true
-Volare Island;2023-03-26;Cartas;true
-Drumbeat Island;2023-03-27;Cofre de Monedas Pirata;false
-Medeia;2023-03-27;Oro;false
-Asura Island;2023-03-27;Cartas;false
-Oblivion Isle;2023-03-28;Silver;false
-Tranquil Isle;2023-03-28;Cofre de Monedas Pirata;false
-Forpe;2023-03-28;Cartas;false
-Snowpang Island;2023-03-29;Silver;false
-Lush Reed Island;2023-03-29;Cofre de Monedas Pirata;false
-Lagoon Island;2023-03-29;Cartas;false
-Forpe;2023-03-30;Oro;false
-Medeia;2023-03-30;Silver;false
-Drumbeat Island;2023-03-30;Cartas;false
-Asura Island;2023-03-31;Cartas;false
-Tranquil Isle;2023-03-31;Cofre de Monedas Pirata;false
-Oblivion Isle;2023-03-31;Silver;false
-Snowpang Island;2023-04-01;Cofre de Monedas Pirata;false
-Oblivion Isle;2023-04-01;Silver;false
-Medeia;2023-04-01;Cartas;false
-Volare Island;2023-04-01;Cofre de Monedas Pirata;true
-Drumbeat Island;2023-04-01;Cartas;true
-Asura Island;2023-04-01;Silver;true
-Opportunity Isle;2023-04-02;Cofre de Monedas Pirata;false
-Phantomwing Island;2023-04-02;Cartas;false
-Lush Reed Island;2023-04-02;Silver;false
-Lagoon Island;2023-04-02;Cartas;true
-Tranquil Isle;2023-04-02;Oro;true
-Harmony Island;2023-04-02;Cofre de Monedas Pirata;true
-Forpe;2023-04-03;Cofre de Monedas Pirata;false
-Monte Island;2023-04-03;Silver;false
-Lush Reed Island;2023-04-03;Cartas;false
-Snowpang Island;2023-04-04;Cofre de Monedas Pirata;false
-Drumbeat Island;2023-04-04;Cartas;false
-Tranquil Isle;2023-04-04;Silver;false
-Medeia;2023-04-05;Oro;false
-Harmony Island;2023-04-05;Cartas;false
-Phantomwing Island;2023-04-05;Silver;false
-Forpe;2023-04-06;Cartas;false
-Monte Island;2023-04-06;Cofre de Monedas Pirata;false
-Volare Island;2023-04-06;Silver;false
-Opportunity Isle;2023-04-07;Cartas;false
-Asura Island;2023-04-07;Cofre de Monedas Pirata;false
-Lagoon Island;2023-04-07;Silver;false
-Oblivion Isle;2023-04-08;Silver;false
-Volare Island;2023-04-08;Oro;false
-Snowpang Island;2023-04-08;Cofre de Monedas Pirata;false
-Medeia;2023-04-08;Cartas;true
-Drumbeat Island;2023-04-08;Cofre de Monedas Pirata;true
-Harmony Island;2023-04-08;Silver;true
-Lagoon Island;2023-04-09;Silver;false
-Asura Island;2023-04-09;Cartas;false
-Lush Reed Island;2023-04-09;Cofre de Monedas Pirata;false
-Opportunity Isle;2023-04-09;Cofre de Monedas Pirata;true
-Monte Island;2023-04-09;Silver;true
-Forpe;2023-04-09;Cartas;true
-Phantomwing Island;2023-04-10;Oro;false
-Oblivion Isle;2023-04-10;Cofre de Monedas Pirata;false
-Tranquil Isle;2023-04-10;Cartas;false
-Phantomwing Island;2023-04-11;Cartas;false
-Monte Island;2023-04-11;Silver;false
-Asura Island;2023-04-11;Cofre de Monedas Pirata;false
-Drumbeat Island;2023-04-12;Silver;false
-Harmony Island;2023-04-12;Cartas;false
-Oblivion Isle;2023-04-12;Cofre de Monedas Pirata;false
-Snowpang Island;2023-04-13;Silver;false
-Volare Island;2023-04-13;Cartas;false
-Lagoon Island;2023-04-13;Oro;false
-Tranquil Isle;2023-04-14;Cofre de Monedas Pirata;false
-Forpe;2023-04-14;Cartas;false
-Opportunity Isle;2023-04-14;Silver;false
-Medeia;2023-04-15;Cartas;false
-Lush Reed Island;2023-04-15;Cofre de Monedas Pirata;false
-Phantomwing Island;2023-04-15;Silver;false
-Snowpang Island;2023-04-15;Cofre de Monedas Pirata;true
-Forpe;2023-04-15;Cartas;true
-Harmony Island;2023-04-15;Silver;true
-Volare Island;2023-04-16;Cartas;false
-Lush Reed Island;2023-04-16;Silver;false
-Medeia;2023-04-16;Cofre de Monedas Pirata;false
-Opportunity Isle;2023-04-16;Cofre de Monedas Pirata;true
-Drumbeat Island;2023-04-16;Silver;true
-Tranquil Isle;2023-04-16;Oro;true
-Monte Island;2023-04-17;Silver;false
-Lagoon Island;2023-04-17;Cofre de Monedas Pirata;false
-Asura Island;2023-04-17;Cartas;false
-Oblivion Isle;2023-04-18;Cofre de Monedas Pirata;false
-Volare Island;2023-04-18;Cartas;false
-Medeia;2023-04-18;Silver;false
-Tranquil Isle;2023-04-19;Cofre de Monedas Pirata;false
-Monte Island;2023-04-19;Oro;false
-Lagoon Island;2023-04-19;Cartas;false
-Lush Reed Island;2023-04-20;Cartas;false
-Asura Island;2023-04-20;Cofre de Monedas Pirata;false
-Snowpang Island;2023-04-20;Silver;false
-Harmony Island;2023-04-21;Silver;false
-Phantomwing Island;2023-04-21;Cartas;false
-Oblivion Isle;2023-04-21;Cofre de Monedas Pirata;false
-Opportunity Isle;2023-04-22;Cartas;false
-Drumbeat Island;2023-04-22;Silver;false
-Forpe;2023-04-22;Oro;false
-Asura Island;2023-04-22;Silver;true
-Phantomwing Island;2023-04-22;Cofre de Monedas Pirata;true
-Lush Reed Island;2023-04-22;Cartas;true
-Tranquil Isle;2023-04-23;Cartas;false
-Opportunity Isle;2023-04-23;Silver;false
-Volare Island;2023-04-23;Cofre de Monedas Pirata;false
-Forpe;2023-04-23;Cartas;true
-Monte Island;2023-04-23;Silver;true
-Lagoon Island;2023-04-23;Cofre de Monedas Pirata;true
-Harmony Island;2023-04-24;Cofre de Monedas Pirata;false
-Medeia;2023-04-24;Silver;false
-Drumbeat Island;2023-04-24;Cartas;false
-Oblivion Isle;2023-04-25;Cofre de Monedas Pirata;false
-Snowpang Island;2023-04-25;Silver;false
-Monte Island;2023-04-25;Oro;false
-Forpe;2023-04-26;Cartas;false
-Lush Reed Island;2023-04-26;Cofre de Monedas Pirata;false
-Phantomwing Island;2023-04-26;Silver;false
-Opportunity Isle;2023-04-27;Cofre de Monedas Pirata;false
-Drumbeat Island;2023-04-27;Cartas;false
-Volare Island;2023-04-27;Silver;false
-Snowpang Island;2023-04-28;Oro;false
-Lagoon Island;2023-04-28;Cofre de Monedas Pirata;false
-Oblivion Isle;2023-04-28;Silver;false
-Harmony Island;2023-04-29;Cartas;false
-Tranquil Isle;2023-04-29;Silver;false
-Medeia;2023-04-29;Cofre de Monedas Pirata;false
-Asura Island;2023-04-29;Cofre de Monedas Pirata;true
-Forpe;2023-04-29;Cartas;true
-Oblivion Isle;2023-04-29;Silver;true
-Volare Island;2023-04-30;Cartas;false
-Snowpang Island;2023-04-30;Silver;false
-Opportunity Isle;2023-04-30;Cofre de Monedas Pirata;false
-Monte Island;2023-04-30;Cartas;true
-Tranquil Isle;2023-04-30;Silver;true
-Medeia;2023-04-30;Oro;true
+Drumbeat Island;2023-05-01;Cartas;false
+Lagoon Island;2023-05-01;Silver;false
+Harmony Island;2023-05-01;Cofre de Monedas Pirata;false
+Asura Island;2023-05-02;Silver;false
+Lush Reed Island;2023-05-02;Cofre de Monedas Pirata;false
+Phantomwing Island;2023-05-02;Cartas;false
+Medeia;2023-05-03;Cofre de Monedas Pirata;false
+Drumbeat Island;2023-05-03;Silver;false
+Lagoon Island;2023-05-03;Oro;false
+Forpe;2023-05-04;Cofre de Monedas Pirata;false
+Opportunity Isle;2023-05-04;Cartas;false
+Monte Island;2023-05-04;Silver;false
+Volare Island;2023-05-05;Cartas;false
+Tranquil Isle;2023-05-05;Cofre de Monedas Pirata;false
+Snowpang Island;2023-05-05;Silver;false
+Harmony Island;2023-05-06;Cofre de Monedas Pirata;false
+Phantomwing Island;2023-05-06;Silver;false
+Oblivion Isle;2023-05-06;Cartas;false
+Asura Island;2023-05-06;Oro;true
+Lush Reed Island;2023-05-06;Cofre de Monedas Pirata;true
+Snowpang Island;2023-05-06;Cartas;true
+Opportunity Isle;2023-05-07;Silver;false
+Lagoon Island;2023-05-07;Cofre de Monedas Pirata;false
+Phantomwing Island;2023-05-07;Cartas;false
+Medeia;2023-05-07;Cartas;true
+Volare Island;2023-05-07;Cofre de Monedas Pirata;true
+Forpe;2023-05-07;Silver;true
+Asura Island;2023-05-08;Oro;false
+Harmony Island;2023-05-08;Silver;false
+Lush Reed Island;2023-05-08;Cartas;false
+Drumbeat Island;2023-05-09;Cofre de Monedas Pirata;false
+Monte Island;2023-05-09;Cartas;false
+Oblivion Isle;2023-05-09;Silver;false
+Tranquil Isle;2023-05-10;Silver;false
+Harmony Island;2023-05-10;Cofre de Monedas Pirata;false
+Lush Reed Island;2023-05-10;Cartas;false
+Medeia;2023-05-11;Cofre de Monedas Pirata;false
+Phantomwing Island;2023-05-11;Oro;false
+Snowpang Island;2023-05-11;Silver;false
+Monte Island;2023-05-12;Silver;false
+Tranquil Isle;2023-05-12;Cofre de Monedas Pirata;false
+Opportunity Isle;2023-05-12;Cartas;false
+Forpe;2023-05-13;Cartas;false
+Drumbeat Island;2023-05-13;Silver;false
+Oblivion Isle;2023-05-13;Cofre de Monedas Pirata;false
+Asura Island;2023-05-13;Cofre de Monedas Pirata;true
+Volare Island;2023-05-13;Cartas;true
+Lagoon Island;2023-05-13;Silver;true
+Medeia;2023-05-14;Cartas;false
+Snowpang Island;2023-05-14;Cofre de Monedas Pirata;false
+Drumbeat Island;2023-05-14;Oro;false
+Forpe;2023-05-14;Cartas;true
+Phantomwing Island;2023-05-14;Cofre de Monedas Pirata;true
+Opportunity Isle;2023-05-14;Silver;true
+Monte Island;2023-05-15;Cofre de Monedas Pirata;false
+Asura Island;2023-05-15;Cartas;false
+Harmony Island;2023-05-15;Silver;false
+Lagoon Island;2023-05-16;Silver;false
+Tranquil Isle;2023-05-16;Cofre de Monedas Pirata;false
+Volare Island;2023-05-16;Cartas;false
+Opportunity Isle;2023-05-17;Oro;false
+Oblivion Isle;2023-05-17;Cartas;false
+Lush Reed Island;2023-05-17;Silver;false
+Snowpang Island;2023-05-18;Cofre de Monedas Pirata;false
+Lagoon Island;2023-05-18;Silver;false
+Phantomwing Island;2023-05-18;Cartas;false
+Forpe;2023-05-19;Silver;false
+Harmony Island;2023-05-19;Cartas;false
+Lush Reed Island;2023-05-19;Cofre de Monedas Pirata;false
+Drumbeat Island;2023-05-20;Cartas;false
+Medeia;2023-05-20;Silver;false
+Volare Island;2023-05-20;Cofre de Monedas Pirata;false
+Tranquil Isle;2023-05-20;Cofre de Monedas Pirata;true
+Monte Island;2023-05-20;Silver;true
+Asura Island;2023-05-20;Oro;true
+Oblivion Isle;2023-05-21;Cartas;false
+Phantomwing Island;2023-05-21;Silver;false
+Lagoon Island;2023-05-21;Cofre de Monedas Pirata;false
+Volare Island;2023-05-21;Cofre de Monedas Pirata;true
+Harmony Island;2023-05-21;Cartas;true
+Medeia;2023-05-21;Silver;true
+Oblivion Isle;2023-05-22;Cofre de Monedas Pirata;false
+Asura Island;2023-05-22;Cartas;false
+Monte Island;2023-05-22;Silver;false
+Snowpang Island;2023-05-23;Cofre de Monedas Pirata;false
+Opportunity Isle;2023-05-23;Oro;false
+Tranquil Isle;2023-05-23;Cartas;false
+Drumbeat Island;2023-05-24;Silver;false
+Forpe;2023-05-24;Cofre de Monedas Pirata;false
+Lush Reed Island;2023-05-24;Cartas;false
+Oblivion Isle;2023-05-25;Cartas;false
+Asura Island;2023-05-25;Cofre de Monedas Pirata;false
+Opportunity Isle;2023-05-25;Silver;false
+Tranquil Isle;2023-05-26;Cartas;false
+Snowpang Island;2023-05-26;Silver;false
+Lush Reed Island;2023-05-26;Oro;false
+Forpe;2023-05-27;Silver;false
+Phantomwing Island;2023-05-27;Cofre de Monedas Pirata;false
+Medeia;2023-05-27;Cartas;false
+Harmony Island;2023-05-27;Cofre de Monedas Pirata;true
+Drumbeat Island;2023-05-27;Cartas;true
+Lagoon Island;2023-05-27;Silver;true
+Volare Island;2023-05-28;Cofre de Monedas Pirata;false
+Monte Island;2023-05-28;Cartas;false
+Tranquil Isle;2023-05-28;Silver;false
+Lush Reed Island;2023-05-28;Silver;true
+Forpe;2023-05-28;Oro;true
+Snowpang Island;2023-05-28;Cofre de Monedas Pirata;true
+Volare Island;2023-05-29;Cofre de Monedas Pirata;false
+Monte Island;2023-05-29;Silver;false
+Lagoon Island;2023-05-29;Cartas;false
+Medeia;2023-05-30;Cartas;false
+Phantomwing Island;2023-05-30;Cofre de Monedas Pirata;false
+Asura Island;2023-05-30;Silver;false
+Harmony Island;2023-05-31;Cartas;false
+Oblivion Isle;2023-05-31;Oro;false
+Drumbeat Island;2023-05-31;Cofre de Monedas Pirata;false
+Opportunity Isle;2023-06-01;Cofre de Monedas Pirata;false
+Tranquil Isle;2023-06-01;Cartas;false
+Snowpang Island;2023-06-01;Silver;false
+Forpe;2023-06-02;Cartas;false
+Asura Island;2023-06-02;Cofre de Monedas Pirata;false
+Lush Reed Island;2023-06-02;Silver;false
+Oblivion Isle;2023-06-03;Silver;false
+Drumbeat Island;2023-06-03;Cartas;false
+Medeia;2023-06-03;Cofre de Monedas Pirata;false
+Harmony Island;2023-06-03;Oro;true
+Lagoon Island;2023-06-03;Cartas;true
+Opportunity Isle;2023-06-03;Silver;true
+Phantomwing Island;2023-06-04;Silver;false
+Monte Island;2023-06-04;Cartas;false
+Volare Island;2023-06-04;Cofre de Monedas Pirata;false
+Asura Island;2023-06-04;Cartas;true
+Lagoon Island;2023-06-04;Silver;true
+Tranquil Isle;2023-06-04;Cofre de Monedas Pirata;true
+Opportunity Isle;2023-06-05;Cofre de Monedas Pirata;false
+Lush Reed Island;2023-06-05;Silver;false
+Drumbeat Island;2023-06-05;Cartas;false
+Harmony Island;2023-06-06;Cofre de Monedas Pirata;false
+Snowpang Island;2023-06-06;Oro;false
+Medeia;2023-06-06;Silver;false
+Phantomwing Island;2023-06-07;Cofre de Monedas Pirata;false
+Oblivion Isle;2023-06-07;Cartas;false
+Volare Island;2023-06-07;Silver;false
+Forpe;2023-06-08;Silver;false
+Monte Island;2023-06-08;Cartas;false
+Medeia;2023-06-08;Cofre de Monedas Pirata;false
+Lagoon Island;2023-06-09;Cartas;false
+Harmony Island;2023-06-09;Cofre de Monedas Pirata;false
+Drumbeat Island;2023-06-09;Oro;false
+Opportunity Isle;2023-06-10;Cartas;false
+Phantomwing Island;2023-06-10;Cofre de Monedas Pirata;false
+Volare Island;2023-06-10;Silver;false
+Forpe;2023-06-10;Cartas;true
+Tranquil Isle;2023-06-10;Silver;true
+Lush Reed Island;2023-06-10;Cofre de Monedas Pirata;true
+Oblivion Isle;2023-06-11;Oro;false
+Asura Island;2023-06-11;Silver;false
+Snowpang Island;2023-06-11;Cartas;false
+Monte Island;2023-06-11;Silver;true
+Tranquil Isle;2023-06-11;Cartas;true
+Volare Island;2023-06-11;Cofre de Monedas Pirata;true
+Opportunity Isle;2023-06-12;Silver;false
+Drumbeat Island;2023-06-12;Cartas;false
+Lagoon Island;2023-06-12;Cofre de Monedas Pirata;false
+Phantomwing Island;2023-06-13;Silver;false
+Oblivion Isle;2023-06-13;Cofre de Monedas Pirata;false
+Lush Reed Island;2023-06-13;Cartas;false
+Monte Island;2023-06-14;Silver;false
+Snowpang Island;2023-06-14;Cofre de Monedas Pirata;false
+Medeia;2023-06-14;Oro;false
+Harmony Island;2023-06-15;Cofre de Monedas Pirata;false
+Forpe;2023-06-15;Cartas;false
+Asura Island;2023-06-15;Silver;false
+Monte Island;2023-06-16;Silver;false
+Phantomwing Island;2023-06-16;Cofre de Monedas Pirata;false
+Volare Island;2023-06-16;Cartas;false
+Snowpang Island;2023-06-17;Cartas;false
+Opportunity Isle;2023-06-17;Cofre de Monedas Pirata;false
+Oblivion Isle;2023-06-17;Oro;false
+Forpe;2023-06-17;Cofre de Monedas Pirata;true
+Drumbeat Island;2023-06-17;Cartas;true
+Medeia;2023-06-17;Silver;true
+Harmony Island;2023-06-18;Silver;false
+Asura Island;2023-06-18;Cofre de Monedas Pirata;false
+Tranquil Isle;2023-06-18;Cartas;false
+Lagoon Island;2023-06-18;Cartas;true
+Lush Reed Island;2023-06-18;Silver;true
+Medeia;2023-06-18;Cofre de Monedas Pirata;true
+Opportunity Isle;2023-06-19;Cartas;false
+Monte Island;2023-06-19;Cofre de Monedas Pirata;false
+Snowpang Island;2023-06-19;Silver;false
+Drumbeat Island;2023-06-20;Cartas;false
+Volare Island;2023-06-20;Oro;false
+Lush Reed Island;2023-06-20;Silver;false
+Forpe;2023-06-21;Cofre de Monedas Pirata;false
+Asura Island;2023-06-21;Silver;false
+Lagoon Island;2023-06-21;Cartas;false
+Oblivion Isle;2023-06-22;Cartas;false
+Tranquil Isle;2023-06-22;Silver;false
+Phantomwing Island;2023-06-22;Cofre de Monedas Pirata;false
+Harmony Island;2023-06-23;Oro;false
+Snowpang Island;2023-06-23;Silver;false
+Volare Island;2023-06-23;Cofre de Monedas Pirata;false
+Lagoon Island;2023-06-24;Cofre de Monedas Pirata;false
+Asura Island;2023-06-24;Cartas;false
+Medeia;2023-06-24;Silver;false
+Monte Island;2023-06-24;Cofre de Monedas Pirata;true
+Phantomwing Island;2023-06-24;Silver;true
+Drumbeat Island;2023-06-24;Cartas;true
+Harmony Island;2023-06-25;Cofre de Monedas Pirata;false
+Opportunity Isle;2023-06-25;Cartas;false
+Tranquil Isle;2023-06-25;Silver;false
+Oblivion Isle;2023-06-25;Cartas;true
+Lush Reed Island;2023-06-25;Oro;true
+Forpe;2023-06-25;Cofre de Monedas Pirata;true
+Drumbeat Island;2023-06-26;Cofre de Monedas Pirata;false
+Opportunity Isle;2023-06-26;Cartas;false
+Medeia;2023-06-26;Silver;false
+Volare Island;2023-06-27;Silver;false
+Tranquil Isle;2023-06-27;Cartas;false
+Asura Island;2023-06-27;Cofre de Monedas Pirata;false
+Snowpang Island;2023-06-28;Oro;false
+Lagoon Island;2023-06-28;Cartas;false
+Lush Reed Island;2023-06-28;Silver;false
+Harmony Island;2023-06-29;Cartas;false
+Phantomwing Island;2023-06-29;Silver;false
+Oblivion Isle;2023-06-29;Cofre de Monedas Pirata;false
+Monte Island;2023-06-30;Cofre de Monedas Pirata;false
+Forpe;2023-06-30;Cartas;false
+Opportunity Isle;2023-06-30;Silver;false
