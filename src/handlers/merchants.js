@@ -58,7 +58,7 @@ Región: ${merchants[name]?.Region || '??'}
 Zona: ${zone}
 Carta: ${card.name} (${RARITIES[card.rarity]})
 Rapport: ${rapport.name} (${RARITIES[rapport.rarity]})
-Item: ${tradeskill}
+Item: ${tradeskill ? tradeskill : '--'}
 Votos: ${votes}
 \`\`\``,
           files: [
