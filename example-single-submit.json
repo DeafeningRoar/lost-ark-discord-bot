@@ -9,7 +9,8 @@
       "zone": "Secret Forest",
       "card": { "name": "Stella", "rarity": 2 },
       "rapport": { "name": "Pinata Crafting Set", "rarity": 3 },
-      "votes": 0
+      "votes": 0,
+      "Tradeskill": "item x"
     }
   ]
 }

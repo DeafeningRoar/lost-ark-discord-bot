@@ -21,7 +21,7 @@ async function notifyMerchantFound({ channel, merchant, server }) {
   await Promise.all(
     merchant.activeMerchants.map(async activeMerchant => {
       try {
-        const { id, name, zone, card, rapport, votes } = activeMerchant;
+        const { id, name, zone, card, rapport, votes, tradeskill } = activeMerchant;
 
         const [exists] = await messagesDB.find([
           {
@@ -58,6 +58,7 @@ Región: ${merchants[name]?.Region || '??'}
 Zona: ${zone}
 Carta: ${card.name} (${RARITIES[card.rarity]})
 Rapport: ${rapport.name} (${RARITIES[rapport.rarity]})
+Item: ${tradeskill}
 Votos: ${votes}
 \`\`\``,
           files: [
