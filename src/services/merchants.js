@@ -43,7 +43,7 @@ class MerchantsHub {
       return { server: this.server, merchants, error: false };
     } catch (error) {
       console.log('Error fetching active merchants list', error);
-      emitter.emit(EVENTS.NOTIFY_ALERT, formatError('getActiveMerchantsList', error));
+      // emitter.emit(EVENTS.NOTIFY_ALERT, formatError('getActiveMerchantsList', error));
       return { server: this.server, merchants: [], error: true };
     }
   }
