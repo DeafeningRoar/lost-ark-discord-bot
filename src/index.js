@@ -40,7 +40,7 @@ async function start() {
 
     Emitter.on(EVENTS.NOTIFY_ALERT, async message => {
       if (discord.client?.isReady?.()) {
-        await notifyAlert({ message, client: discord.client });
+        await notifyAlert({ message: `[${new Date().toISOString()}] ${message}`, client: discord.client });
       }
     });
 

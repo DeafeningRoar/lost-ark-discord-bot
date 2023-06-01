@@ -5,6 +5,7 @@ function sleep(ms) {
 }
 
 const formatError = (context, error) => ({
+  timestamp: new Date().toISOString(),
   context,
   message: error?.message || error,
   stack: error?.stack
