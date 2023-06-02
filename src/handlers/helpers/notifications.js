@@ -15,7 +15,7 @@ async function notifyAlert({ message, client }) {
         channel.send(
           `
 \`\`\`
-${inspect(message, false, null, false)}
+${typeof message === 'string' ? message : inspect(message, false, null, false)}
 \`\`\``
         )
       )

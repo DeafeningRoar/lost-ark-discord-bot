@@ -272,14 +272,14 @@ module.exports = ({ discord, merchantsHub }) => {
 
   Emitter.on(EVENTS.MERCHANTS_HUB_RECONNECTED, async () => {
     if (discord.client?.isReady?.()) {
-      await notifyAlert({ message: 'Reconnected to MerchantsHub', client: discord.client });
+      await notifyAlert({ message: `[${new Date().toISOString()}] Reconnected to MerchantsHub`, client: discord.client });
     }
     Emitter.emit(EVENTS.MERCHANTS_READY);
   });
 
   Emitter.on(EVENTS.MERCHANTS_HUB_RECONNECTING, async () => {
     if (discord.client?.isReady?.()) {
-      await notifyAlert({ message: 'Reconnecting to MerchantsHub', client: discord.client });
+      await notifyAlert({ message: `[${new Date().toISOString()}] Reconnecting to MerchantsHub`, client: discord.client });
     }
   });
 };
