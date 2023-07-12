@@ -51,7 +51,7 @@ async function notifyMerchantFound({ channel, merchant, server }) {
         }
 
         const message = await channel.send({
-          content: `${['wei', 'vairgrys'].includes(card.name.toLowerCase()) ? '@everyone' : ''}
+          content: `${card.rarity === 4 ? '@everyone' : ''}
 Expiración: <t:${getRemainingTime()}:R>\`\`\`
 Nombre: ${name}
 Región: ${merchants[name]?.Region || '??'}
