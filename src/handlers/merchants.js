@@ -1,5 +1,5 @@
 const { Emitter } = require('../services');
-const { EVENTS, FIVE_MINUTES_MS, RARITIES } = require('../config/constants');
+const { EVENTS, FIVE_MINUTES_MS, RARITIES, SERVER_ROLES } = require('../config/constants');
 const merchants = require('../../merchants.json');
 const Discord = require('../services/discord');
 const MerchantsHub = require('../services/merchants');
@@ -17,11 +17,12 @@ const getRemainingTime = () => {
   return Math.floor(currentDate.getTime() / 1000);
 };
 
-async function notifyMerchantFound({ channel, merchant, server }) {
+async function notifyMerchantFound({ channel, merchant }) {
   await Promise.all(
     merchant.activeMerchants.map(async activeMerchant => {
       try {
         const { id, name, zone, card, rapport, votes, tradeskill } = activeMerchant;
+        const { server } = merchant;
 
         const [exists] = await messagesDB.find([
           {
@@ -37,7 +38,9 @@ async function notifyMerchantFound({ channel, merchant, server }) {
         ]);
 
         if (exists) {
-          console.log(`Merchant ${id} (${name}) already notified to channel ${channel.id} (${channel.name})`);
+          console.log(
+            `Merchant ${id} (${name}) (${server}) already notified to channel ${channel.id} (${channel.name})`
+          );
           return;
         }
 
@@ -51,8 +54,9 @@ async function notifyMerchantFound({ channel, merchant, server }) {
         }
 
         const message = await channel.send({
-          content: `${card.rarity === 4 ? '@everyone' : ''}
+          content: `${card.rarity === 4 ? `<@&${SERVER_ROLES[server]}>` : ''}
 Expiración: <t:${getRemainingTime()}:R>\`\`\`
+Server ${server}
 Nombre: ${name}
 Región: ${merchants[name]?.Region || '??'}
 Zona: ${zone}
@@ -82,7 +86,7 @@ Votos: ${votes}
   );
 }
 
-async function notifyMerchantVotesChanged({ channel, merchantId, votes, server }) {
+async function notifyMerchantVotesChanged({ channel, merchantId, votes }) {
   const [message] = await messagesDB.find([
     {
       key: 'merchantId',
@@ -105,7 +109,7 @@ async function notifyMerchantVotesChanged({ channel, merchantId, votes, server }
   await discordMessage.edit(discordMessage.content.replace(regex, `Votos: ${votes}`));
 }
 
-async function clearMessages(client, hasActiveMerchants, server, error) {
+async function clearMessages(client, hasActiveMerchants, error) {
   if (hasActiveMerchants || error) return;
   console.log('Clearing and reformatting messages');
   try {
@@ -159,10 +163,10 @@ async function clearMessages(client, hasActiveMerchants, server, error) {
 }
 
 const checkActiveMerchants = async (merchantsHub, channel) => {
-  const { merchants, server, error } = await merchantsHub.getActiveMerchantsList();
+  const { merchants, error } = await merchantsHub.getActiveMerchantsList();
   if (!error && merchants.length) {
     console.log(`Attempting to notify ${merchants.length} active merchants`);
-    merchants.forEach(merchant => Emitter.emit(EVENTS.MERCHANT_FOUND, { merchant, server, channel }));
+    merchants.forEach(merchant => Emitter.emit(EVENTS.MERCHANT_FOUND, { merchant, channel }));
   } else {
     console.log(`No active merchants to notify (Error: ${error})`);
   }
@@ -184,7 +188,7 @@ module.exports = ({ discord, merchantsHub }) => {
     await checkActiveMerchants(merchantsHub, channel);
   });
 
-  Emitter.on(EVENTS.MERCHANT_FOUND, async ({ merchant, server, channel }) => {
+  Emitter.on(EVENTS.MERCHANT_FOUND, async ({ merchant, channel }) => {
     if (!discord.client?.isReady?.()) {
       throw new Error(`${EVENTS.MERCHANT_FOUND} - Discord client not ready`);
     }
@@ -210,15 +214,15 @@ module.exports = ({ discord, merchantsHub }) => {
             return;
           }
 
-          return notifyMerchantFound({ channel: dcChannel, merchant, server });
+          return notifyMerchantFound({ channel: dcChannel, merchant });
         })
       );
     } else {
-      return notifyMerchantFound({ channel, merchant, server });
+      return notifyMerchantFound({ channel, merchant });
     }
   });
 
-  Emitter.on(EVENTS.MERCHANT_VOTES_CHANED, async ({ server, merchantId, votes }) => {
+  Emitter.on(EVENTS.MERCHANT_VOTES_CHANED, async ({ merchantId, votes }) => {
     if (!discord.client?.isReady?.()) {
       throw new Error(`${EVENTS.MERCHANT_VOTES_CHANED} - Discord client not ready`);
     }
@@ -242,16 +246,16 @@ module.exports = ({ discord, merchantsHub }) => {
           console.log(`Notification channel ${channelId} not found in Discord cache`);
           return;
         }
-        await notifyMerchantVotesChanged({ channel, merchantId, votes, server });
+        await notifyMerchantVotesChanged({ channel, merchantId, votes });
       })
     );
   });
 
-  Emitter.on(EVENTS.MERCHANTS_LIST_CHECK, async ({ merchants, server, error }) => {
+  Emitter.on(EVENTS.MERCHANTS_LIST_CHECK, async ({ merchants, error }) => {
     if (!discord.client?.isReady?.()) {
       throw new Error(`${EVENTS.MERCHANT_FOUND} - Discord client not ready`);
     }
-    await clearMessages(discord.client, Boolean(merchants?.length), server, error);
+    await clearMessages(discord.client, Boolean(merchants?.length), error);
   });
 
   /******* Error Event Listeners *******/
@@ -272,14 +276,20 @@ module.exports = ({ discord, merchantsHub }) => {
 
   Emitter.on(EVENTS.MERCHANTS_HUB_RECONNECTED, async () => {
     if (discord.client?.isReady?.()) {
-      await notifyAlert({ message: `[${new Date().toISOString()}] Reconnected to MerchantsHub`, client: discord.client });
+      await notifyAlert({
+        message: `[${new Date().toISOString()}] Reconnected to MerchantsHub`,
+        client: discord.client
+      });
     }
     Emitter.emit(EVENTS.MERCHANTS_READY);
   });
 
   Emitter.on(EVENTS.MERCHANTS_HUB_RECONNECTING, async () => {
     if (discord.client?.isReady?.()) {
-      await notifyAlert({ message: `[${new Date().toISOString()}] Reconnecting to MerchantsHub`, client: discord.client });
+      await notifyAlert({
+        message: `[${new Date().toISOString()}] Reconnecting to MerchantsHub`,
+        client: discord.client
+      });
     }
   });
 };

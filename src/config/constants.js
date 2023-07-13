@@ -37,10 +37,16 @@ const RARITIES = {
   4: 'Legendary'
 };
 
+const SERVER_ROLES = {
+  Arthetine: process.env.ARTHETINE,
+  Blackfang: process.env.BLACKFANG
+};
+
 module.exports = {
   FIVE_MINUTES_MS,
   MERCHANTS_HUB_ACTIONS,
   DISCORD_ACTIONS,
   EVENTS,
-  RARITIES
+  RARITIES,
+  SERVER_ROLES
 };
