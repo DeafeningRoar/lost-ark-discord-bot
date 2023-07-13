@@ -55,8 +55,8 @@ async function notifyMerchantFound({ channel, merchant }) {
 
         const message = await channel.send({
           content: `${card.rarity >= Number(process.env.CARD_RARITY_NOTIFICATION) ? `<@&${SERVER_ROLES[server]}>` : ''}
-Expiración: <t:${getRemainingTime()}:R>\`\`\`
-Server ${server}
+Expiración: <t:${getRemainingTime()}:R>
+**${server}**\`\`\`
 Nombre: ${name}
 Región: ${merchants[name]?.Region || '??'}
 Zona: ${zone}
