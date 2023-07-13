@@ -6,9 +6,9 @@ const { formatError } = require('../utils');
 const { FIVE_MINUTES_MS, MERCHANTS_HUB_ACTIONS, EVENTS } = require('../config/constants');
 
 class MerchantsHub {
-  constructor({ server = 'Blackfang' } = {}) {
+  constructor({ servers = ['Blackfang'] } = {}) {
     this.connection = null;
-    this.server = server;
+    this.servers = servers;
     this.interval = null;
   }
 
@@ -36,15 +36,16 @@ class MerchantsHub {
 
   async getActiveMerchantsList() {
     try {
-      const merchants = await this.connection.invoke(
-        MERCHANTS_HUB_ACTIONS.GET_KNOWN_ACTIVE_MERCHANT_GROUPS,
-        this.server
+      const merchants = await Promise.all(
+        this.servers.map(async server =>
+          this.connection.invoke(MERCHANTS_HUB_ACTIONS.GET_KNOWN_ACTIVE_MERCHANT_GROUPS, server)
+        )
       );
-      return { server: this.server, merchants, error: false };
+      return { merchants: merchants.flat(), error: false };
     } catch (error) {
       console.log('Error fetching active merchants list', error);
       // emitter.emit(EVENTS.NOTIFY_ALERT, formatError('getActiveMerchantsList', error));
-      return { server: this.server, merchants: [], error: true };
+      return { merchants: [], error: true };
     }
   }
 
@@ -59,8 +60,12 @@ class MerchantsHub {
   }
 
   async initializeSubscriptions() {
-    await this.connection.invoke(MERCHANTS_HUB_ACTIONS.SUBSCRIBE_TO_SERVER, this.server);
-    console.log('Subscribed to MerchantsHub server', this.server);
+    await Promise.all(
+      this.servers.map(async server => {
+        await this.connection.invoke(MERCHANTS_HUB_ACTIONS.SUBSCRIBE_TO_SERVER, server);
+        console.log('Subscribed to MerchantsHub server', server);
+      })
+    );
 
     this.connection.on(MERCHANTS_HUB_ACTIONS.UPDATE_MERCHANT_GROUP, (server, merchant) => {
       console.log('Received found merchant event', { server, merchant });
@@ -70,7 +75,7 @@ class MerchantsHub {
     this.connection.on(MERCHANTS_HUB_ACTIONS.UPDATE_VOTES, updatedVotes => {
       console.log('Received merchant votes updated event', updatedVotes);
       updatedVotes.forEach(({ id: merchantId, votes }) => {
-        emitter.emit(EVENTS.MERCHANT_VOTES_CHANED, { server: this.server, merchantId, votes });
+        emitter.emit(EVENTS.MERCHANT_VOTES_CHANED, { merchantId, votes });
       });
     });
   }
