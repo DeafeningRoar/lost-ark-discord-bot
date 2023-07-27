@@ -55,7 +55,6 @@ async function notifyMerchantFound({ channel, merchant }) {
 
         const message = await channel.send({
           content: `${card.rarity >= Number(process.env.CARD_RARITY_NOTIFICATION) ? `<@&${SERVER_ROLES[server]}>` : ''}
-**${server}**
 Expiración: <t:${getRemainingTime()}:R>\`\`\`
 Nombre: ${name}
 Región: ${merchants[name]?.Region || '??'}
@@ -64,7 +63,8 @@ Carta: ${card.name} (${RARITIES[card.rarity]})
 Rapport: ${rapport.name} (${RARITIES[rapport.rarity]})
 Item: ${tradeskill ? tradeskill : '--'}
 Votos: ${votes}
-\`\`\``,
+\`\`\`
+**${server.toUpperCase()}**`,
           files: [
             {
               attachment: __dirname + '/../../assets/zones/' + zone + '.jpg',
