@@ -15,9 +15,15 @@ const channelsDB = new Channels();
 
 const getRemainingTime = appearanceTime => {
   const serverTzOffset = -4;
+  const currentDate = moment().utcOffset(serverTzOffset);
   const expirationDate = moment().utcOffset(serverTzOffset).startOf('day');
+  const appearanceHour = Number(appearanceTime.split(':')[0]);
 
-  expirationDate.set('hour', Number(appearanceTime.split(':')[0]) + 5);
+  if (currentDate.get('hour') <= 3 && appearanceHour >= 22) {
+    expirationDate.set('day', expirationDate.get('day') - 1);
+  }
+
+  expirationDate.set('hour', appearanceHour + 5);
   expirationDate.set('minutes', 30);
 
   return Math.floor(expirationDate.valueOf() / 1000);
@@ -204,7 +210,6 @@ const checkActiveMerchants = async (merchantsHub, channel) => {
   const { merchants, error } = await merchantsHub.getActiveMerchantsList();
   if (!error && merchants.length) {
     console.log(`Attempting to notify ${merchants.length} active merchants`);
-    console.log(JSON.stringify(merchants));
     merchants.forEach(merchant => Emitter.emit(EVENTS.MERCHANT_FOUND, { merchant, channel }));
   } else {
     console.log(`No active merchants to notify (Error: ${error})`);
