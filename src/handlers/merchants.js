@@ -104,8 +104,8 @@ Expiración: <t:${getRemainingTime(appearanceTime)}:R>
 Nombre: ${name}
 Región: ${merchants[name]?.Region || '??'}
 Zona: ${zone}
-Carta: ${cards.map(card => `${card.name} (${RARITIES[card.rarity]})`).join(' | ')}
-Rapport: ${rapports.map(rapport => `${rapport.name} (${RARITIES[rapport.rarity]})`).join(' | ')}
+Cartas: ${cards.map(card => `${card.name} (${RARITIES[card.rarity]})`).join(' | ')}
+Rapports: ${rapports.map(rapport => `${rapport.name} (${RARITIES[rapport.rarity]})`).join(' | ')}
 Item: ${tradeskill ? tradeskill : '--'}
 Votos: ${votes}
 \`\`\``,
