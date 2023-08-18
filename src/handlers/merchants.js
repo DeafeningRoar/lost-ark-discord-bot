@@ -194,7 +194,7 @@ async function clearMessages(client, hasActiveMerchants, error) {
 const checkActiveMerchants = async (merchantsHub, channel) => {
   const { merchants, error } = await merchantsHub.getActiveMerchantsList();
   if (!error && merchants.length) {
-    console.log(`Attempting to notify ${merchants.length} active merchants`;
+    console.log(`Attempting to notify ${merchants.length} active merchants`);
     console.log(JSON.stringify(merchants));
     merchants.forEach(merchant => Emitter.emit(EVENTS.MERCHANT_FOUND, { merchant, channel }));
   } else {
