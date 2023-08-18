@@ -3,20 +3,7 @@
     "Name": "Dorella",
     "Region": "Feiton",
     "SortOrder": 12,
-    "AppearanceTimes": [
-      "01:30:00",
-      "04:30:00",
-      "05:30:00",
-      "07:30:00",
-      "08:30:00",
-      "11:30:00",
-      "13:30:00",
-      "16:30:00",
-      "17:30:00",
-      "19:30:00",
-      "20:30:00",
-      "23:30:00"
-    ],
+    "AppearanceTimes": ["04:00:00", "16:00:00"],
     "Zones": ["Kalaja"],
     "Cards": [
       {
@@ -29,6 +16,10 @@
       },
       {
         "Name": "Kaldor",
+        "Rarity": "Epic"
+      },
+      {
+        "Name": "Jederico",
         "Rarity": "Epic"
       }
     ],
@@ -55,20 +46,7 @@
     "Name": "Morris",
     "Region": "East Luterra",
     "SortOrder": 4,
-    "AppearanceTimes": [
-      "01:30:00",
-      "04:30:00",
-      "05:30:00",
-      "07:30:00",
-      "08:30:00",
-      "11:30:00",
-      "13:30:00",
-      "16:30:00",
-      "17:30:00",
-      "19:30:00",
-      "20:30:00",
-      "23:30:00"
-    ],
+    "AppearanceTimes": ["04:00:00", "16:00:00"],
     "Zones": ["Dyorika Plain", "Flowering Orchard", "Sunbright Hill"],
     "Cards": [
       {
@@ -86,6 +64,10 @@
       {
         "Name": "Thunderwings",
         "Rarity": "Epic"
+      },
+      {
+        "Name": "Delain Armen",
+        "Rarity": "Legendary"
       }
     ],
     "Rapports": [
@@ -111,20 +93,7 @@
     "Name": "Lucas",
     "Region": "Yudia",
     "SortOrder": 2,
-    "AppearanceTimes": [
-      "01:30:00",
-      "04:30:00",
-      "05:30:00",
-      "07:30:00",
-      "08:30:00",
-      "11:30:00",
-      "13:30:00",
-      "16:30:00",
-      "17:30:00",
-      "19:30:00",
-      "20:30:00",
-      "23:30:00"
-    ],
+    "AppearanceTimes": ["04:00:00", "16:00:00"],
     "Zones": ["Ozhorn Hill", "Saland Hill"],
     "Cards": [
       {
@@ -159,27 +128,8 @@
     "Name": "Mac",
     "Region": "Anikka",
     "SortOrder": 6,
-    "AppearanceTimes": [
-      "01:30:00",
-      "04:30:00",
-      "05:30:00",
-      "07:30:00",
-      "08:30:00",
-      "11:30:00",
-      "13:30:00",
-      "16:30:00",
-      "17:30:00",
-      "19:30:00",
-      "20:30:00",
-      "23:30:00"
-    ],
-    "Zones": [
-      "Delphi Township",
-      "Melody Forest",
-      "Prisma Valley",
-      "Rattan Hill",
-      "Twilight Mists"
-    ],
+    "AppearanceTimes": ["04:00:00", "16:00:00"],
+    "Zones": ["Delphi Township", "Melody Forest", "Prisma Valley", "Rattan Hill", "Twilight Mists"],
     "Cards": [
       {
         "Name": "Madam Moonscent",
@@ -213,27 +163,8 @@
     "Name": "Jeffrey",
     "Region": "Shushire",
     "SortOrder": 9,
-    "AppearanceTimes": [
-      "01:30:00",
-      "04:30:00",
-      "05:30:00",
-      "07:30:00",
-      "08:30:00",
-      "11:30:00",
-      "13:30:00",
-      "16:30:00",
-      "17:30:00",
-      "19:30:00",
-      "20:30:00",
-      "23:30:00"
-    ],
-    "Zones": [
-      "Bitterwind Hill",
-      "Frozen Sea",
-      "Iceblood Plateau",
-      "Icewing Heights",
-      "Lake Eternity"
-    ],
+    "AppearanceTimes": ["04:00:00", "16:00:00"],
+    "Zones": ["Bitterwind Hill", "Frozen Sea", "Iceblood Plateau", "Icewing Heights", "Lake Eternity"],
     "Cards": [
       {
         "Name": "Javern",
@@ -263,20 +194,7 @@
     "Name": "Ben",
     "Region": "Rethramis",
     "SortOrder": 1,
-    "AppearanceTimes": [
-      "00:30:00",
-      "03:30:00",
-      "04:30:00",
-      "06:30:00",
-      "07:30:00",
-      "10:30:00",
-      "12:30:00",
-      "15:30:00",
-      "16:30:00",
-      "18:30:00",
-      "19:30:00",
-      "22:30:00"
-    ],
+    "AppearanceTimes": ["10:00:00", "16:00:00"],
     "Zones": ["Ankumo Mountain", "Loghill", "Rethramis Border"],
     "Cards": [
       {
@@ -306,7 +224,7 @@
         "Rarity": "Epic"
       },
       {
-        "Name": "Surprise Chest",
+        "Name": "Pit-a-Pat Chest",
         "Rarity": "Legendary"
       }
     ]
@@ -315,27 +233,8 @@
     "Name": "Laitir",
     "Region": "Yorn",
     "SortOrder": 11,
-    "AppearanceTimes": [
-      "00:30:00",
-      "03:30:00",
-      "04:30:00",
-      "06:30:00",
-      "07:30:00",
-      "10:30:00",
-      "12:30:00",
-      "15:30:00",
-      "16:30:00",
-      "18:30:00",
-      "19:30:00",
-      "22:30:00"
-    ],
-    "Zones": [
-      "Black Anvil Mine",
-      "Hall of Promise",
-      "Iron Hammer Mine",
-      "Unfinished Garden",
-      "Yorn's Cradle"
-    ],
+    "AppearanceTimes": ["10:00:00", "16:00:00"],
+    "Zones": ["Black Anvil Mine", "Hall of Promise", "Iron Hammer Mine", "Unfinished Garden", "Yorn's Cradle"],
     "Cards": [
       {
         "Name": "Great Castle Neria",
@@ -348,6 +247,10 @@
       {
         "Name": "Kaysarr",
         "Rarity": "Epic"
+      },
+      {
+        "Name": "Balthorr",
+        "Rarity": "Legendary"
       }
     ],
     "Rapports": [
@@ -365,27 +268,8 @@
     "Name": "Peter",
     "Region": "North Vern",
     "SortOrder": 8,
-    "AppearanceTimes": [
-      "00:30:00",
-      "03:30:00",
-      "04:30:00",
-      "06:30:00",
-      "07:30:00",
-      "10:30:00",
-      "12:30:00",
-      "15:30:00",
-      "16:30:00",
-      "18:30:00",
-      "19:30:00",
-      "22:30:00"
-    ],
-    "Zones": [
-      "Balankar Mountains",
-      "Fesnar Highland",
-      "Parna Forest",
-      "Port Krona",
-      "Vernese Forest"
-    ],
+    "AppearanceTimes": ["10:00:00", "16:00:00"],
+    "Zones": ["Balankar Mountains", "Fesnar Highland", "Parna Forest", "Port Krona", "Vernese Forest"],
     "Cards": [
       {
         "Name": "Gideon",
@@ -431,27 +315,8 @@
     "Name": "Malone",
     "Region": "West Luterra",
     "SortOrder": 3,
-    "AppearanceTimes": [
-      "00:30:00",
-      "02:30:00",
-      "05:30:00",
-      "06:30:00",
-      "08:30:00",
-      "09:30:00",
-      "12:30:00",
-      "14:30:00",
-      "17:30:00",
-      "18:30:00",
-      "20:30:00",
-      "21:30:00"
-    ],
-    "Zones": [
-      "Battlebound Plains",
-      "Bilbrin Forest",
-      "Lakebar",
-      "Medrick Monastery",
-      "Mount Zagoras"
-    ],
+    "AppearanceTimes": ["10:00:00", "22:00:00"],
+    "Zones": ["Battlebound Plains", "Bilbrin Forest", "Lakebar", "Medrick Monastery", "Mount Zagoras"],
     "Cards": [
       {
         "Name": "Berhart",
@@ -476,6 +341,10 @@
         "Rarity": "Epic"
       },
       {
+        "Name": "Hairplant",
+        "Rarity": "Epic"
+      },
+      {
         "Name": "Stalwart Cage",
         "Rarity": "Epic"
       },
@@ -489,26 +358,8 @@
     "Name": "Burt",
     "Region": "East Luterra",
     "SortOrder": 4,
-    "AppearanceTimes": [
-      "00:30:00",
-      "02:30:00",
-      "05:30:00",
-      "06:30:00",
-      "08:30:00",
-      "09:30:00",
-      "12:30:00",
-      "14:30:00",
-      "17:30:00",
-      "18:30:00",
-      "20:30:00",
-      "21:30:00"
-    ],
-    "Zones": [
-      "Blackrose Chapel",
-      "Borea's Domain",
-      "Croconys Seashore",
-      "Leyar Terrace"
-    ],
+    "AppearanceTimes": ["10:00:00", "22:00:00"],
+    "Zones": ["Blackrose Chapel", "Borea's Domain", "Croconys Seashore", "Leyar Terrace"],
     "Cards": [
       {
         "Name": "Nox",
@@ -546,26 +397,8 @@
     "Name": "Oliver",
     "Region": "Tortoyk",
     "SortOrder": 5,
-    "AppearanceTimes": [
-      "00:30:00",
-      "02:30:00",
-      "05:30:00",
-      "06:30:00",
-      "08:30:00",
-      "09:30:00",
-      "12:30:00",
-      "14:30:00",
-      "17:30:00",
-      "18:30:00",
-      "20:30:00",
-      "21:30:00"
-    ],
-    "Zones": [
-      "Forest of Giants",
-      "Seaswept Woods",
-      "Skyreach Steppe",
-      "Sweetwater Forest"
-    ],
+    "AppearanceTimes": ["10:00:00", "22:00:00"],
+    "Zones": ["Forest of Giants", "Seaswept Woods", "Skyreach Steppe", "Sweetwater Forest"],
     "Cards": [
       {
         "Name": "Egg of Creation",
@@ -603,28 +436,8 @@
     "Name": "Nox",
     "Region": "Arthetine",
     "SortOrder": 7,
-    "AppearanceTimes": [
-      "00:30:00",
-      "02:30:00",
-      "05:30:00",
-      "06:30:00",
-      "08:30:00",
-      "09:30:00",
-      "12:30:00",
-      "14:30:00",
-      "17:30:00",
-      "18:30:00",
-      "20:30:00",
-      "21:30:00"
-    ],
-    "Zones": [
-      "Arid Path",
-      "Nebelhorn",
-      "Riza Falls",
-      "Scraplands",
-      "Totrich",
-      "Windbringer Hills"
-    ],
+    "AppearanceTimes": ["10:00:00", "22:00:00"],
+    "Zones": ["Arid Path", "Nebelhorn", "Riza Falls", "Scraplands", "Totrich", "Windbringer Hills"],
     "Cards": [
       {
         "Name": "Bergstrom",
@@ -654,27 +467,8 @@
     "Name": "Aricer",
     "Region": "Rohendel",
     "SortOrder": 10,
-    "AppearanceTimes": [
-      "00:30:00",
-      "02:30:00",
-      "05:30:00",
-      "06:30:00",
-      "08:30:00",
-      "09:30:00",
-      "12:30:00",
-      "14:30:00",
-      "17:30:00",
-      "18:30:00",
-      "20:30:00",
-      "21:30:00"
-    ],
-    "Zones": [
-      "Breezesome Brae",
-      "Elzowin's Shade",
-      "Glass Lotus Lake",
-      "Lake Shiverwave",
-      "Xeneela Ruins"
-    ],
+    "AppearanceTimes": ["10:00:00", "22:00:00"],
+    "Zones": ["Breezesome Brae", "Elzowin's Shade", "Glass Lotus Lake", "Lake Shiverwave", "Xeneela Ruins"],
     "Cards": [
       {
         "Name": "Alifer",
@@ -699,6 +493,10 @@
         "Rarity": "Epic"
       },
       {
+        "Name": "Pit-A-Pat Macron",
+        "Rarity": "Epic"
+      },
+      {
         "Name": "Soundstone of Dawn",
         "Rarity": "Epic"
       },
@@ -712,26 +510,8 @@
     "Name": "Rayni",
     "Region": "Punika",
     "SortOrder": 13,
-    "AppearanceTimes": [
-      "00:30:00",
-      "02:30:00",
-      "05:30:00",
-      "06:30:00",
-      "08:30:00",
-      "09:30:00",
-      "12:30:00",
-      "14:30:00",
-      "17:30:00",
-      "18:30:00",
-      "20:30:00",
-      "21:30:00"
-    ],
-    "Zones": [
-      "Secret Forest",
-      "Starsand Beach",
-      "Tideshelf Path",
-      "Tikatika Colony"
-    ],
+    "AppearanceTimes": ["10:00:00", "22:00:00"],
+    "Zones": ["Secret Forest", "Starsand Beach", "Tideshelf Path", "Tikatika Colony"],
     "Cards": [
       {
         "Name": "Cicerra",
@@ -773,20 +553,7 @@
     "Name": "Evan",
     "Region": "South Vern",
     "SortOrder": 14,
-    "AppearanceTimes": [
-      "00:30:00",
-      "03:30:00",
-      "04:30:00",
-      "06:30:00",
-      "07:30:00",
-      "10:30:00",
-      "12:30:00",
-      "15:30:00",
-      "16:30:00",
-      "18:30:00",
-      "19:30:00",
-      "22:30:00"
-    ],
+    "AppearanceTimes": ["10:00:00", "16:00:00"],
     "Zones": ["Bellion Ruins", "Candaria Territory"],
     "Cards": [
       {
@@ -833,7 +600,7 @@
     "Name": "Serihan",
     "Region": "Rowen",
     "SortOrder": 15,
-    "AppearanceTimes": ["01:30:00", "09:30:00", "15:30:00", "21:30:00"],
+    "AppearanceTimes": ["10:00:00", "16:00:00"],
     "Zones": ["Fang River", "The Wolflands"],
     "Cards": [
       {
@@ -912,8 +679,8 @@
     "Name": "Flanos",
     "Region": "Elgacia",
     "SortOrder": 16,
-    "AppearanceTimes": [ "00:30:00", "03:30:00", "04:30:00", "06:30:00", "07:30:00", "10:30:00", "12:30:00", "15:30:00", "16:30:00", "18:30:00", "19:30:00", "22:30:00" ],
-    "Zones": [ "Hestera Garden", "Mount Phylantos" ],
+    "AppearanceTimes": ["10:00:00", "16:00:00"],
+    "Zones": ["Hestera Garden", "Mount Phylantos"],
     "Cards": [
       {
         "Name": "Cahni",

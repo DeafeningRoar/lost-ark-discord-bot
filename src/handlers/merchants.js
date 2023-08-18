@@ -1,3 +1,5 @@
+const moment = require('moment-timezone');
+
 const { Emitter } = require('../services');
 const { EVENTS, FIVE_MINUTES_MS, RARITIES, SERVER_ROLES } = require('../config/constants');
 const merchants = require('../../merchants.json');
@@ -11,17 +13,33 @@ const { formatError, sleep } = require('../utils');
 const messagesDB = new Messages();
 const channelsDB = new Channels();
 
-const getRemainingTime = () => {
-  const currentDate = new Date();
-  currentDate.setUTCMinutes(55, 0, 0);
-  return Math.floor(currentDate.getTime() / 1000);
+const getRemainingTime = appearanceTime => {
+  const serverTzOffset = -4;
+  const expirationDate = moment().utcOffset(serverTzOffset).startOf('day');
+
+  expirationDate.set('hour', Number(appearanceTime.split(':')[0]) + 5);
+  expirationDate.set('minutes', 30);
+
+  return Math.floor(expirationDate.valueOf() / 1000);
+};
+
+const getAppearanceTime = appearanceTimes => {
+  const serverTzOffset = -4;
+  const currentDate = moment().utcOffset(serverTzOffset);
+
+  return appearanceTimes.filter(appearanceTime => {
+    const time = moment().utcOffset(serverTzOffset);
+    time.set('hour', appearanceTime.split(':')[0]);
+
+    return currentDate.isSameOrAfter(time);
+  })[0];
 };
 
 async function notifyMerchantFound({ channel, merchant }) {
   await Promise.all(
     merchant.activeMerchants.map(async activeMerchant => {
       try {
-        const { id, name, zone, card, rapport, votes, tradeskill } = activeMerchant;
+        const { id, name, zone, cards, rapports, votes, tradeskill } = activeMerchant;
         const { server } = merchant;
 
         const [exists] = await messagesDB.find([
@@ -44,18 +62,26 @@ async function notifyMerchantFound({ channel, merchant }) {
           return;
         }
 
-        const isWhiteListed = JSON.parse(process.env.CARD_WHITELIST || '[]').includes(card.name.toLowerCase());
+        const isWhiteListed = JSON.parse(process.env.CARD_WHITELIST || '[]').some(card =>
+          cards.some(c => c.name.toLowerCase() === card)
+        );
         if (
-          card.rarity < Number(process.env.CARD_RARITY_THRESHOLD) &&
-          rapport.rarity < Number(process.env.RAPPORT_RARITY_THRESHOLD) &&
+          cards.every(card => card.rarity < Number(process.env.CARD_RARITY_THRESHOLD)) &&
+          rapports.every(rapport => rapport.rarity < Number(process.env.RAPPORT_RARITY_THRESHOLD)) &&
           !isWhiteListed
         ) {
           return;
         }
 
+        const appearanceTime = getAppearanceTime(merchants[name].AppearanceTimes);
+
         const message = await channel.send({
-          content: `${card.rarity >= Number(process.env.CARD_RARITY_NOTIFICATION) ? `<@&${SERVER_ROLES[server]}>` : ''}
-Expiración: <t:${getRemainingTime()}:R>
+          content: `${
+            cards.some(card => card.rarity >= Number(process.env.CARD_RARITY_NOTIFICATION))
+              ? `<@&${SERVER_ROLES[server]}>`
+              : ''
+          }
+Expiración: <t:${getRemainingTime(appearanceTime)}:R>
 
 **${server.toUpperCase()}**
 
@@ -63,8 +89,8 @@ Expiración: <t:${getRemainingTime()}:R>
 Nombre: ${name}
 Región: ${merchants[name]?.Region || '??'}
 Zona: ${zone}
-Carta: ${card.name} (${RARITIES[card.rarity]})
-Rapport: ${rapport.name} (${RARITIES[rapport.rarity]})
+Carta: ${cards.map(card => `${card.name} (${RARITIES[card.rarity]})`).join(' | ')}
+Rapport: ${rapports.map(rapport => `${rapport.name} (${RARITIES[rapport.rarity]})`).join(' | ')}
 Item: ${tradeskill ? tradeskill : '--'}
 Votos: ${votes}
 \`\`\``,
