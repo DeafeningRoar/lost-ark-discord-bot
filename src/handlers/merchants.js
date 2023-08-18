@@ -28,9 +28,18 @@ const getAppearanceTime = appearanceTimes => {
   const currentDate = moment().utcOffset(serverTzOffset);
 
   return appearanceTimes.filter(appearanceTime => {
+    const appearanceHour = Number(appearanceTime.split(':')[0]);
     const time = moment().utcOffset(serverTzOffset);
-    time.set('hour', appearanceTime.split(':')[0]);
+    time.set('hour', appearanceHour);
+    time.set('minutes', 0);
+    time.set('seconds', 0);
+    time.set('milliseconds', 0);
 
+    if (currentDate.get('hour') <= 3 && appearanceHour >= 22) {
+      time.set('day', time.get('day') - 1);
+    }
+
+    console.log(currentDate.toISOString(), time.toISOString());
     return currentDate.isSameOrAfter(time);
   })[0];
 };
