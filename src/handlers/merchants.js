@@ -45,8 +45,11 @@ const getAppearanceTime = appearanceTimes => {
       time.set('day', time.get('day') - 1);
     }
 
-    console.log(currentDate.toISOString(), time.toISOString());
-    return currentDate.isSameOrAfter(time);
+    const expiredtime = moment(time);
+    expiredtime.set('hour', expiredtime.get('hour') + 5);
+    expiredtime.set('minutes', 30);
+
+    return currentDate.isSameOrAfter(time) && currentDate.isSameOrBefore(expiredtime);
   })[0];
 };
 
