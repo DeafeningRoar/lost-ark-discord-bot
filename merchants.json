@@ -3,7 +3,7 @@
     "Name": "Dorella",
     "Region": "Feiton",
     "SortOrder": 12,
-    "AppearanceTimes": ["04:00:00", "16:00:00"],
+    "AppearanceTimes": ["10:00:00", "16:00:00"],
     "Zones": ["Kalaja"],
     "Cards": [
       {
@@ -46,7 +46,7 @@
     "Name": "Morris",
     "Region": "East Luterra",
     "SortOrder": 4,
-    "AppearanceTimes": ["04:00:00", "16:00:00"],
+    "AppearanceTimes": ["10:00:00", "16:00:00"],
     "Zones": ["Dyorika Plain", "Flowering Orchard", "Sunbright Hill"],
     "Cards": [
       {
@@ -93,7 +93,7 @@
     "Name": "Lucas",
     "Region": "Yudia",
     "SortOrder": 2,
-    "AppearanceTimes": ["04:00:00", "16:00:00"],
+    "AppearanceTimes": ["10:00:00", "16:00:00"],
     "Zones": ["Ozhorn Hill", "Saland Hill"],
     "Cards": [
       {
@@ -128,7 +128,7 @@
     "Name": "Mac",
     "Region": "Anikka",
     "SortOrder": 6,
-    "AppearanceTimes": ["04:00:00", "16:00:00"],
+    "AppearanceTimes": ["10:00:00", "16:00:00"],
     "Zones": ["Delphi Township", "Melody Forest", "Prisma Valley", "Rattan Hill", "Twilight Mists"],
     "Cards": [
       {
@@ -163,7 +163,7 @@
     "Name": "Jeffrey",
     "Region": "Shushire",
     "SortOrder": 9,
-    "AppearanceTimes": ["04:00:00", "16:00:00"],
+    "AppearanceTimes": ["10:00:00", "16:00:00"],
     "Zones": ["Bitterwind Hill", "Frozen Sea", "Iceblood Plateau", "Icewing Heights", "Lake Eternity"],
     "Cards": [
       {
