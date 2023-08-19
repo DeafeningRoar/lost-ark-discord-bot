@@ -59,7 +59,7 @@ async function notifyMerchantFound({ channel, merchant }) {
   await Promise.all(
     merchant.activeMerchants.map(async activeMerchant => {
       try {
-        const { id, name, zone, cards, rapports, votes, tradeskill } = activeMerchant;
+        const { id, name, cards, rapports, votes, tradeskill } = activeMerchant;
         const { server } = merchant;
 
         const [exists] = await messagesDB.find([
@@ -108,18 +108,17 @@ Expiración: <t:${getRemainingTime(appearanceTime)}:R>
 \`\`\`
 Nombre: ${name}
 Región: ${merchants[name]?.Region || '??'}
-Zona: ${zone}
 Cartas: ${cards.map(card => `${card.name} (${RARITIES[card.rarity]})`).join(' | ')}
 Rapports: ${rapports.map(rapport => `${rapport.name} (${RARITIES[rapport.rarity]})`).join(' | ')}
 Item: ${tradeskill ? tradeskill : '--'}
 Votos: ${votes}
-\`\`\``,
-          files: [
-            {
-              attachment: __dirname + '/../../assets/zones/' + zone + '.jpg',
-              name: zone + '.jpg'
-            }
-          ]
+\`\`\``
+          // files: [
+          //   {
+          //     attachment: __dirname + '/../../assets/zones/' + zone + '.jpg',
+          //     name: zone + '.jpg'
+          //   }
+          // ]
         });
 
         await messagesDB.insert({
