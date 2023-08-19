@@ -13,6 +13,8 @@ const { formatError, sleep } = require('../utils');
 const messagesDB = new Messages();
 const channelsDB = new Channels();
 
+const spawnTimes = ['04', '10', '16', '22'];
+
 const getRemainingTime = appearanceTime => {
   const serverTzOffset = -4;
   const currentDate = moment().utcOffset(serverTzOffset);
@@ -29,11 +31,11 @@ const getRemainingTime = appearanceTime => {
   return Math.floor(expirationDate.valueOf() / 1000);
 };
 
-const getAppearanceTime = appearanceTimes => {
+const getAppearanceTime = () => {
   const serverTzOffset = -4;
   const currentDate = moment().utcOffset(serverTzOffset);
 
-  return appearanceTimes.filter(appearanceTime => {
+  return spawnTimes.filter(appearanceTime => {
     const appearanceHour = Number(appearanceTime.split(':')[0]);
     const time = moment().utcOffset(serverTzOffset);
     time.set('hour', appearanceHour);
@@ -91,7 +93,7 @@ async function notifyMerchantFound({ channel, merchant }) {
           return;
         }
 
-        const appearanceTime = getAppearanceTime(merchants[name].AppearanceTimes);
+        const appearanceTime = getAppearanceTime();
 
         const message = await channel.send({
           content: `${
