@@ -6,11 +6,12 @@ function sleep(ms) {
   });
 }
 
-const formatError = (context, error) =>
+const formatError = (context, error, data = null) =>
   inspect(
     {
       timestamp: new Date().toISOString(),
       context,
+      data,
       message: error?.message || error,
       stack: error?.stack
     },

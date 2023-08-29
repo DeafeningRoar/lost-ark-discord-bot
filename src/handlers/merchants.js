@@ -14,9 +14,9 @@ const messagesDB = new Messages();
 const channelsDB = new Channels();
 
 const spawnTimes = ['04', '10', '16', '22'];
+const serverTzOffset = -4;
 
 const getRemainingTime = appearanceTime => {
-  const serverTzOffset = -4;
   const currentDate = moment().utcOffset(serverTzOffset);
   const expirationDate = moment().utcOffset(serverTzOffset).startOf('day');
   const appearanceHour = Number(appearanceTime.split(':')[0]);
@@ -32,7 +32,6 @@ const getRemainingTime = appearanceTime => {
 };
 
 const getAppearanceTime = () => {
-  const serverTzOffset = -4;
   const currentDate = moment().utcOffset(serverTzOffset);
 
   return spawnTimes.filter(appearanceTime => {
@@ -128,7 +127,7 @@ Votos: ${votes}
         });
       } catch (error) {
         console.log(`Error notifying merchant to channel ${channel.id} (${channel.name})`, error);
-        Emitter.emit(EVENTS.NOTIFY_ALERT, formatError('notifyMerchantFound', error));
+        Emitter.emit(EVENTS.NOTIFY_ALERT, formatError('notifyMerchantFound', error, activeMerchant));
       }
     })
   );
