@@ -50,7 +50,10 @@ const getAppearanceTime = () => {
     expiredtime.set('hour', expiredtime.get('hour') + 5);
     expiredtime.set('minutes', 30);
 
-    return currentDate.isSameOrAfter(time) && currentDate.isSameOrBefore(expiredtime);
+    return (
+      (currentDate.isSameOrAfter(time) || time.diff(currentDate, 'minutes') <= 2) &&
+      currentDate.isSameOrBefore(expiredtime)
+    );
   })[0];
 };
 
