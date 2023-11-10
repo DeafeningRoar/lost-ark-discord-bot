@@ -14,7 +14,7 @@ const messagesDB = new Messages();
 const channelsDB = new Channels();
 
 const spawnTimes = ['04', '10', '16', '22'];
-const serverTzOffset = -4;
+const serverTzOffset = -3;
 
 const getRemainingTime = appearanceTime => {
   const currentDate = moment().utcOffset(serverTzOffset);

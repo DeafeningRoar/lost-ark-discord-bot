@@ -6,7 +6,7 @@ const emitter = require('./eventEmitter');
 const { EVENTS } = require('../config/constants');
 const { formatError } = require('../utils');
 
-const tzOffset = -4;
+const tzOffset = -3;
 const schedules = [11, 13, 15, 19, 21, 23];
 
 class IslandTracker {
